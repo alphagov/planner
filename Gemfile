@@ -11,22 +11,17 @@ else
   gem 'slimmer', :git => 'git@github.com:alphagov/slimmer.git'
 end
 
-group :mac_development do
-  gem 'guard'
-  gem 'guard-test'
-  gem 'growl_notify'
-  gem 'rb-fsevent'
-  gem 'ruby-prof'
-end
-
 group :test do
   gem 'factory_girl_rails'
   gem 'mocha', :require => false
+  gem "shoulda", "~> 2.11.3"
   gem 'simplecov', :require => false
   gem 'simplecov-rcov', :require => false
   gem 'webmock', :require => false
   gem 'ci_reporter'
   gem 'test-unit'
+  # Pretty printed test output
+  gem 'turn', :require => false
 end
 
 # Gems used only for assets and not required
@@ -34,5 +29,6 @@ end
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
+  gem "therubyracer", "~> 0.9.4"
   gem 'uglifier'
 end
