@@ -24,6 +24,10 @@ group :test do
   gem 'turn', :require => false
 end
 
+group :development do
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

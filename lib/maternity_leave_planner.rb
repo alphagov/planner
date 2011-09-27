@@ -1,9 +1,10 @@
 class MaternityLeavePlanner
   attr_reader :due_date, :start
   
-  def initialize(due_date)
-    @due_date = dateify(due_date)
-    @start = default_start
+  def initialize(options = {})
+    raise ArgumentError, 'due_date required' unless options.has_key?(:due_date)
+    @due_date = dateify(options[:due_date])
+    @start = validate_start_date(options[:start] || default_start)
   end
   
   def expected_week_of_childbirth
@@ -15,14 +16,18 @@ class MaternityLeavePlanner
     weeks_later(expected_week_of_childbirth, -15)
   end
   
-  def start=(date)
+  def earliest_start
+    expected_week_of_childbirth.first - 11 * 7
+  end
+
+  def validate_start_date(date)
     proposed_start = dateify(date)
     if proposed_start < earliest_start
       raise "Earliest start of maternity leave is #{earliest_start}"
     elsif proposed_start >= @due_date
       raise "Maternity leave must start before due date"
     end
-    @start = proposed_start
+    proposed_start
   end
   
   def period_of_ordinary_leave
@@ -35,7 +40,7 @@ class MaternityLeavePlanner
   
   def key_dates
     [
-      ["Date you must tell your employer", qualifying_week.last],
+      ["Date by which you must have notified your employer", qualifying_week.last],
       ["Earliest you may start maternity leave", earliest_start],
       ["Period of Ordinary Maternity Leave", period_of_ordinary_leave],
       ["Period of Additional Maternity Leave", period_of_additional_leave],
@@ -55,10 +60,6 @@ class MaternityLeavePlanner
 
     def default_start
       expected_week_of_childbirth.first - 2 * 7
-    end
-
-    def earliest_start
-      expected_week_of_childbirth.first - 11 * 7
     end
 
 end
