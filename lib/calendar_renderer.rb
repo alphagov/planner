@@ -22,7 +22,10 @@ class CalendarRenderer
   
   def render_month(month)
     html = "<table>"
-    html << "<tr><td colspan='#{@numcols}'>#{localize(month, format: '%B')}</td></tr>"
+    html << "<tr><th colspan='#{@numcols}'>#{localize(month, format: '%B %Y')}</th></tr>"
+    html << "<tr>"
+    html << %w{S M T W T F S}.map {|day| "<th>#{day}</th>"}.join
+    html << "</tr>"
     start_of_month = Date.new(month.year, month.month, 1)
     date_range = (start_of_month .. start_of_month.next_month - 1)
     initial_padding = [nil] * start_of_month.wday
