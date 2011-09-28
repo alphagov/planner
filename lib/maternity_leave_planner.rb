@@ -2,15 +2,8 @@ class MaternityLeavePlanner
   attr_reader :due_date, :start
   
   def initialize(options = {})
-    due_date = if (options.keys & [:due_year, :due_month, :due_day]).size == 3
-      "#{options[:due_year]}-#{options[:due_month]}-#{options[:due_day]}"
-    elsif options.has_key?(:due_date) 
-      options[:due_date]
-    else
-      nil
-    end
-    if due_date
-      @due_date = dateify(due_date)
+    if options.has_key?(:due_date)
+      @due_date = dateify(options[:due_date])
       @start = validate_start_date(options[:start] || default_start)
     end
   end
@@ -71,7 +64,13 @@ class MaternityLeavePlanner
     end
     
     def dateify(dateish)
-      dateish.is_a?(Date) ? dateish : Date.parse(dateish.to_s)
+      case dateish
+      when Date then dateish
+      when Hash then
+        Date.parse("#{dateish['year']}-#{dateish['month']}-#{dateish['day']}")
+      else
+        Date.parse(dateish.to_s)
+      end
     end
 
     def default_start

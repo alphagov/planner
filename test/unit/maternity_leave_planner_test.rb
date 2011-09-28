@@ -21,8 +21,8 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
       assert_equal Date.parse('2 October 2011')..Date.parse('8 October 2011'), m.expected_week_of_childbirth
     end
 
-    should 'accept date as separate day, month, year parameters' do
-      m = MaternityLeavePlanner.new(due_day: '13', due_month: '10', due_year: '2011')
+    should 'accept due date as separate day, month, year parameters' do
+      m = MaternityLeavePlanner.new(due_date: {'day' => '13', 'month' => '10', 'year' => '2011'})
       assert_equal Date.parse('9 October 2011')..Date.parse('15 October 2011'), m.expected_week_of_childbirth
     end
 
@@ -57,6 +57,11 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
         assert_raises do
           MaternityLeavePlanner.new(due_date: '17-2-2012', start: '17-2-2012')
         end
+      end
+
+      should "accept maternity leave as separate day, month, year parameters" do
+        m = MaternityLeavePlanner.new(due_date: '17-2-2012', start: {'year' => '2011', 'month' => '11', 'day' => '29'})
+        assert_equal Date.parse('2011-11-29')..Date.parse('2012-5-28'), Hash[m.key_dates]["Period of Ordinary Maternity Leave"]
       end
       
     end
