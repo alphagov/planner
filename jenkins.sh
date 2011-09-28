@@ -6,7 +6,7 @@ bundle install --path "/home/jenkins/bundles/${JOB_NAME}" --deployment
 for dir in images javascript templates stylesheets; do
   rm /var/lib/jenkins/jobs/Planner/workspace/public/$dir
   ln -s /var/lib/jenkins/jobs/Static/workspace/public/$dir /var/lib/jenkins/jobs/Planner/workspace/public/$dir
-fi
+done
 
 bundle exec rake ci:setup:testunit test:units test:functionals
 RESULT=$?
