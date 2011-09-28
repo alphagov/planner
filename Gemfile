@@ -16,8 +16,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'mocha', :require => false
   gem "shoulda", "~> 2.11.3"
-  gem 'simplecov', :require => false
-  gem 'simplecov-rcov', :require => false
+  gem 'simplecov', '0.4.2'
+  gem 'simplecov-rcov'
   gem 'webmock', :require => false
   gem 'ci_reporter'
   gem 'test-unit'
