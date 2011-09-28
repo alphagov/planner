@@ -52,10 +52,11 @@
       <div class="intro">
         <%= form_tag('/plans/maternity', method: :get)%>
           <p>When is your baby due?
-            <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day]) %>
+            <% default_due_date = Date.today >> 9 %>
+            <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %>
             <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
-            <%= select_tag "due_date[month]", options_for_select(months_with_labels, params[:due_date] && params[:due_date][:month]) %>
-            <%= select_tag "due_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:due_date] && params[:due_date][:year]) %>
+            <%= select_tag "due_date[month]", options_for_select(months_with_labels, params[:due_date] && params[:due_date][:month] || default_due_date.month) %>
+            <%= select_tag "due_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:due_date] && params[:due_date][:year] || default_due_date.year) %>
           </p>
           <% if ! @planner.start.nil? %>
             <div class="<%= @planner.errors[:start].any? ? 'error-area' : '' %>">
@@ -77,43 +78,44 @@
       </div>
       
 
-    <% if @planner.key_dates.nil? %>
-    <%= render partial: "show_maternity_blank" %> 
+    <% if ! @planner.valid? || @planner.key_dates.nil? %>
+      <%= render partial: "show_maternity_blank" %> 
     <% else %>
-    <section class="key-dates">
-      <header>
-        <h1>Key Dates</h1>
-      </header>
+      <section class="key-dates">
+        <header>
+          <h1>Key Dates</h1>
+        </header>
 
-      <ol>
-        <% @planner.key_dates.each_with_index do |key_date_info, i| %>
-        <% label, value = key_date_info %>
-        <li class="vevent key-date-<%= i %>">
-          <span class="summary"><%= label %></span>
-          <% if value.is_a?(Range) %>
-          <time class="dtstart" datetime="<%= l(value.first, format: :short) %>">
-            <%= l(value.first, format: :long) %>
-          </time> 
-          &ndash;
-          <time class="dtend" datetime="<%= l(value.last, format: :short) %>">
-            <%= l(value.last, format: :long) %>
-          </time>
-          <% else %>
-          <time class="dtstart dtend" datetime="<%= l(value, format: :short) %>">
-            <%= l(value, format: :long) %>
-          </time>
+        <ol>
+          <% @planner.key_dates.each_with_index do |key_date_info, i| %>
+          <% label, value = key_date_info %>
+          <li class="vevent key-date-<%= i %>">
+            <span class="summary"><%= label %></span>
+            <% if value.is_a?(Range) %>
+            <time class="dtstart" datetime="<%= l(value.first, format: :short) %>">
+              <%= l(value.first, format: :long) %>
+            </time> 
+            &ndash;
+            <time class="dtend" datetime="<%= l(value.last, format: :short) %>">
+              <%= l(value.last, format: :long) %>
+            </time>
+            <% else %>
+            <time class="dtstart dtend" datetime="<%= l(value, format: :short) %>">
+              <%= l(value, format: :long) %>
+            </time>
+            <% end %>
+          </li>
           <% end %>
-        </li>
-        <% end %>
-      </ol>
-    </section>
+        </ol>
+      </section>
 
-    <div id="calendar">
-      <%= CalendarRenderer.new(
-      @planner.range,
-      decorations: @planner.key_dates
-      ).render %>
-    </div>
+      <div id="calendar">
+        <%= CalendarRenderer.new(
+        @planner.range,
+        decorations: @planner.key_dates
+        ).render %>
+      </div>
     <% end %>
+    </div>
   </article>
 </section>
