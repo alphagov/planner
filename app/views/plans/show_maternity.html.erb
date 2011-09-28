@@ -10,8 +10,8 @@
 			<% if true %>
 				<div class="inner cta" class="group">
 					<ul class="actions">
-						<li><a href="#" class="button"><img src="/images/icon-printer-16.png" alt="" /> Print calendar</a></li>
-						<li><a href="#" class="button"><img src="/images/icon-calendar-16.png" alt="" /> Add to calendar</a></li>
+						<li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
+						<li class="ical"><a href="#" class="button"><span>Add to calendar</span></a></li>
 					</ul>
 				</div>
 			<% end %>
