@@ -1,11 +1,16 @@
 class MaternityLeavePlanner
+  include ActiveModel::Validations
+  include ActionView::Helpers::TranslationHelper
+  
+  validate :start_date_in_range 
   attr_reader :due_date, :start
   
   def initialize(options = {})
     if options.has_key?(:due_date)
       @due_date = dateify(options[:due_date])
-      @start = validate_start_date(options[:start] || default_start)
+      @start = dateify(options[:start] || default_start)
     end
+    # run_validations!
   end
   
   # Range of dates which should be used to display all of the information in this planner
@@ -28,14 +33,12 @@ class MaternityLeavePlanner
     expected_week_of_childbirth.first - 11 * 7
   end
 
-  def validate_start_date(date)
-    proposed_start = dateify(date)
-    if proposed_start < earliest_start
-      raise "Earliest start of maternity leave is #{earliest_start}"
-    elsif proposed_start >= @due_date
-      raise "Maternity leave must start before due date"
+  def start_date_in_range
+    if @start < earliest_start
+      errors.add(:start, "You must pick date on or after #{localize(earliest_start, format: :long)}")
+    elsif @start >= @due_date
+      errors.add(:start, "You must pick date on or before your due date")
     end
-    proposed_start
   end
   
   def period_of_ordinary_leave

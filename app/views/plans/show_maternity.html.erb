@@ -4,28 +4,28 @@
 
 <!-- related position hack -->
 <div class="related-positioning">
-	<div class="related-container">
-		<div class="related-container-two">
-   		<div class="related">
-			<% if true %>
-				<div class="inner cta" class="group">
-					<ul class="actions">
-						<li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
-						<li class="ical"><a href="#" class="button"><span>Add to calendar</span></a></li>
-					</ul>
-				</div>
-			<% end %>
-		     <div class="inner group">
-		       <h2>Related tools &amp; topics</h2>
-		       <nav role="navigation">
-		         <ul>
+  <div class="related-container">
+    <div class="related-container-two">
+      <div class="related">
+        <% if true %>
+        <div class="inner cta" class="group">
+          <ul class="actions">
+            <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
+            <li class="ical"><a href="#" class="button"><span>Add to calendar</span></a></li>
+          </ul>
+        </div>
+        <% end %>
+        <div class="inner group">
+          <h2>Related tools &amp; topics</h2>
+          <nav role="navigation">
+            <ul>
               <li>Eligibility calculator</li>
-		         </ul>
-		       </nav>
-		     </div>
-		   </div><!-- end .related -->
-		</div>
-	</div>
+            </ul>
+          </nav>
+        </div>
+      </div><!-- end .related -->
+    </div>
+  </div>
 </div>
 <!-- end related position hack -->
 
@@ -33,20 +33,21 @@
 <section role="main" class="planner group">
 
   <header class="group">
-			<hgroup>
-				<h1>
-					<span>Planner</span>
-					Maternity leave
-				</h1>
-			</hgroup>
-	</header>
+    <hgroup>
+      <h1>
+        <span>Planner</span>
+        Maternity leave
+      </h1>
+    </hgroup>
+  </header>
 
   <article role="article" class="group">
-		
     <div class="inner date-planner">
-			<div class="error-notification">
-				<p>There's a problem with the options you've selected.</p>
-			</div>
+      <% if ! @planner.valid? %>
+        <div class="error-notification">
+          <p>There's a problem with the options you've selected.</p>
+        </div>
+      <% end %>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris, pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan mauris, id condimentum enim feugiat a.</p>
       <div class="intro">
         <%= form_tag('/plans/maternity', method: :get)%>
@@ -57,58 +58,62 @@
             <%= select_tag "due_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:due_date] && params[:due_date][:year]) %>
           </p>
           <% if ! @planner.start.nil? %>
-					<div class="error-area">
-            <p>When would you like to start your period of Ordinary Maternity leave?<br >
-              <small>(The earliest you can start is <%= l(@planner.earliest_start, format: :long)%>)</small>
-              <%= select_tag "start[day]", options_for_select(1..31, params[:start] && params[:start][:day] || @planner.start.day) %>
-              <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
-              <%= select_tag "start[month]", options_for_select(months_with_labels, params[:start] && params[:start][:month] || @planner.start.month) %>
-              <%= select_tag "start[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:start] && params[:start][:year] || @planner.start.year) %>
-								<span class="error-message">You must pick date on or after <%= l(@planner.earliest_start, format: :long)%>)</span>
-            </p>
-						</div>
+            <div class="<%= @planner.errors[:start].any? ? 'error-area' : '' %>">
+              <p>When would you like to start your period of Ordinary Maternity leave?<br >
+                <small>(The earliest you can start is <%= l(@planner.earliest_start, format: :long)%>)</small>
+                <%= select_tag "start[day]", options_for_select(1..31, params[:start] && params[:start][:day] || @planner.start.day) %>
+                <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
+                <%= select_tag "start[month]", options_for_select(months_with_labels, params[:start] && params[:start][:month] || @planner.start.month) %>
+                <%= select_tag "start[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:start] && params[:start][:year] || @planner.start.year) %>
+                <% @planner.errors[:start].each do |error| %>
+                  <span class="error-message"><%= error %></span>
+                <% end %>
+                <span class="error-message">You must pick date on or after <%= l(@planner.earliest_start, format: :long)%>)</span>
+              </p>
+            </div>
           <% end %>
           <input type="submit" value="Display calendar" class="button" />
         </form>
       </div>
       
-      <% if @planner.key_dates.nil? %>
-        <%= render partial: "show_maternity_blank" %> 
-      <% else %>
-        <section class="key-dates">
-          <header>
-            <h1>Key Dates</h1>
-          </header>
 
-          <ol>
-          <% @planner.key_dates.each_with_index do |key_date_info, i| %>
-            <% label, value = key_date_info %>
-            <li class="vevent key-date-<%= i %>">
-              <span class="summary"><%= label %></span>
-              <% if value.is_a?(Range) %>
-                <time class="dtstart" datetime="<%= l(value.first, format: :short) %>">
-                  <%= l(value.first, format: :long) %>
-                </time> 
-                &ndash;
-                <time class="dtend" datetime="<%= l(value.last, format: :short) %>">
-                  <%= l(value.last, format: :long) %>
-                </time>
-              <% else %>
-                <time class="dtstart dtend" datetime="<%= l(value, format: :short) %>">
-                  <%= l(value, format: :long) %>
-                </time>
-              <% end %>
-            </li>
+    <% if @planner.key_dates.nil? %>
+    <%= render partial: "show_maternity_blank" %> 
+    <% else %>
+    <section class="key-dates">
+      <header>
+        <h1>Key Dates</h1>
+      </header>
+
+      <ol>
+        <% @planner.key_dates.each_with_index do |key_date_info, i| %>
+        <% label, value = key_date_info %>
+        <li class="vevent key-date-<%= i %>">
+          <span class="summary"><%= label %></span>
+          <% if value.is_a?(Range) %>
+          <time class="dtstart" datetime="<%= l(value.first, format: :short) %>">
+            <%= l(value.first, format: :long) %>
+          </time> 
+          &ndash;
+          <time class="dtend" datetime="<%= l(value.last, format: :short) %>">
+            <%= l(value.last, format: :long) %>
+          </time>
+          <% else %>
+          <time class="dtstart dtend" datetime="<%= l(value, format: :short) %>">
+            <%= l(value, format: :long) %>
+          </time>
           <% end %>
-          </ol>
-        </section>
-    
-        <div id="calendar">
-        <%= CalendarRenderer.new(
-          @planner.range,
-          decorations: @planner.key_dates
-          ).render %>
-        </div>
+        </li>
+        <% end %>
+      </ol>
+    </section>
+
+    <div id="calendar">
+      <%= CalendarRenderer.new(
+      @planner.range,
+      decorations: @planner.key_dates
+      ).render %>
+    </div>
     <% end %>
   </article>
 </section>

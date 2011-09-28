@@ -1,6 +1,6 @@
 # coding:utf-8
 
-require 'test_helper'
+require_relative '../test_helper'
 
 class MaternityLeavePlannerTest < ActiveSupport::TestCase
   # References: 
@@ -50,13 +50,9 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
         assert_equal expected, m.key_dates
       end
       
-      should "raise if requested maternity leave out of range" do
-        assert_raises do
-          MaternityLeavePlanner.new(due_date: '17-2-2012', start: '26-11-2011')
-        end
-        assert_raises do
-          MaternityLeavePlanner.new(due_date: '17-2-2012', start: '17-2-2012')
-        end
+      should "report validation error if requested maternity leave out of range" do
+        assert ! MaternityLeavePlanner.new(due_date: '17-2-2012', start: '26-11-2011').valid?
+        assert ! MaternityLeavePlanner.new(due_date: '17-2-2012', start: '17-2-2012').valid?
       end
 
       should "accept maternity leave as separate day, month, year parameters" do
