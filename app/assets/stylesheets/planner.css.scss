@@ -100,32 +100,19 @@ article .key-dates time{
   background:none;
 }
 
-
 #wrapper.planner hgroup h1 {
-    background-image: url("/images/icon-transaction-l.png");
+    background-image: url("/images/icon-planner-48.png");
 }
 #wrapper.planner hgroup h1 span {
-    color: #CC0000;
+    color: #011891;
 }
 
-#wrapper hgroup span {
-    display: block;
-    font-size: 0.4em;
-    font-weight: bold;
-    line-height: 1em;
-    margin-bottom: 0.5em;
-    text-shadow: none;
-    text-transform: uppercase;
-}
+
 #wrapper.planner .intro{
     background-color: #F9F9F9;
     border: 2px solid #BBBBBB;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
     margin-bottom: 1.5em;
     padding: 0.15em 1em;
-}
-#wrapper.planner hgroup {
-    margin-right: 12.5em;
-    margin-top: -1em;
 }
 
