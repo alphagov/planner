@@ -7,6 +7,13 @@ class MaternityLeavePlanner
     @start = validate_start_date(options[:start] || default_start)
   end
   
+  # Range of dates which should be used to display all of the information in this planner
+  def range
+    from = first_of_month(qualifying_week.last)
+    to = (from >> 16) - 1
+    from..to
+  end
+  
   def expected_week_of_childbirth
     sunday = @due_date - @due_date.wday
     sunday..(sunday + 6)
@@ -61,5 +68,8 @@ class MaternityLeavePlanner
     def default_start
       expected_week_of_childbirth.first - 2 * 7
     end
-
+    
+    def first_of_month(date)
+      Date.new(date.year, date.month, 1)
+    end
 end

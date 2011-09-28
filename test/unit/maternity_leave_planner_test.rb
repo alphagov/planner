@@ -21,6 +21,11 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
       m = MaternityLeavePlanner.new(due_date: '13 October 2011')
       assert_equal Date.parse('26 June 2011')..Date.parse('2 July 2011'), m.qualifying_week
     end
+
+    should 'give its range' do
+      m = MaternityLeavePlanner.new(due_date: '17-2-2012')
+      assert_equal  Date.parse('1/11/2011')..Date.parse('28/2/2013'), m.range
+    end
     
     context "key dates" do
       should 'list key dates' do

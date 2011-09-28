@@ -1,1 +1,75 @@
-TBD
+<h2>Key dates</h2>
+
+<section role="main" class="planner group">
+
+  <header class="group">
+    <div class="inner">
+      <hgroup>
+        <h1>
+          <span>Planner</span>
+          Maternity leave
+        </h1>
+      </hgroup>
+    </div>
+  </header>
+
+  <article role="article" class="group">
+    <div class="inner date-planner">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris, pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan mauris, id condimentum enim feugiat a.</p>
+      <div class="intro">
+        <form action="/plannerresults">
+        <p>When is your baby due?
+          <select>
+            <option>17</option>
+          </select>
+          <select>
+            <option>February</option>
+          </select>
+          <select>
+            <option>2012</option>
+          </select>
+          <input type="submit" value="Go" class="button" />
+        </p>
+        </form>
+      </div>
+      
+      <% if true %>
+        <%= render partial: "show_maternity_blank" %> 
+      <% else %>
+        <section class="key-dates">
+          <header>
+            <h1>Key Dates</h1>
+          </header>
+
+          <ol>
+          <% @planner.key_dates.each_with_index do |key_date_info, i| %>
+            <% label, value = key_date_info %>
+            <li class="vevent key-date-<%= i %>">
+              <span class="summary"><%= label %></span>
+              <% if value.is_a?(Range) %>
+                <time class="dtstart" datetime="<%= l(value.first, format: :short) %>">
+                  <%= l(value.first, format: :long) %>
+                </time> 
+                &ndash;
+                <time class="dtend" datetime="<%= l(value.last, format: :short) %>">
+                  <%= l(value.last, format: :long) %>
+                </time>
+              <% else %>
+                <time class="dtstart dtend" datetime="<%= l(value, format: :short) %>">
+                  <%= l(value, format: :long) %>
+                </time>
+              <% end %>
+            </li>
+          <% end %>
+          </ol>
+        </section>
+    
+        <div id="calendar">
+        <%= CalendarRenderer.new(
+          @planner.range,
+          decorations: @planner.key_dates
+          ).render %>
+        </div>
+    <% end %>
+  </article>
+</section>

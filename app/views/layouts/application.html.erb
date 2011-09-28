@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Planner</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Jobs</title>
+    <%= stylesheet_link_tag "planner" %>
+    <meta name="x-section-name" content="Planner" />
+    <meta name="x-section-link" content="planner" />
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
+  </head>
 <body>
-
-<%= yield %>
-
+	<div id="wrapper" class="planner">
+  	<%= yield %>
+	</div>
 </body>
 </html>
