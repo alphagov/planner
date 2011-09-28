@@ -45,23 +45,31 @@
     <div class="inner date-planner">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris, pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan mauris, id condimentum enim feugiat a.</p>
       <div class="intro">
-        <form action="/plannerresults">
+        <form>
         <p>When is your baby due?
-          <select>
-            <option>17</option>
+          <select name="due_day">
+            <%= 1.upto(31).each do |day| %>
+              <option><%= day%></option>
+            <% end%>
           </select>
-          <select>
-            <option>February</option>
+          <select name="due_month">
+            <%= 1.upto(12).each do |month| %>
+              <option value="<%= month %>"><%= l(Date.new(2011, month, 1), format: '%B') %></option>
+            <% end %>
           </select>
-          <select>
-            <option>2012</option>
+          <select name="due_year">
+            <% startyear = Time.now.year - 1 %>
+            <% endyear = Time.now.year + 2 %>
+            <%= startyear.upto(endyear).each do |year| %>
+              <option><%= year %></option>
+            <% end %>
           </select>
           <input type="submit" value="Go" class="button" />
         </p>
         </form>
       </div>
       
-      <% if false %>
+      <% if @planner.key_dates.nil? %>
         <%= render partial: "show_maternity_blank" %> 
       <% else %>
         <section class="key-dates">

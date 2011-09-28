@@ -6,7 +6,7 @@ class CalendarRenderer
     @options = options
     @numcols = @options[:numcols] || 7
     @locale = options[:locale] || :en
-    @decorations = @options[:decorations] || []
+    @decorations = normalize_decorations(@options[:decorations] || [])
   end
   
   def render
@@ -47,15 +47,22 @@ class CalendarRenderer
   end
   
   def decorations_for(date)
-    @decorations.select do |label, date_or_range|
-      if date_or_range.is_a?(Date)
+    @decorations.select do |i, decoration|
+      label, date_or_range = decoration
+      if date_or_range.is_a?(Date) 
         date == date_or_range
       else
         date_or_range.cover?(date)
       end
-    end.map.with_index do |decoration,i|
-      "key-date-#{i}"
-    end
+    end.keys
   end
-    
+   
+  private
+    def normalize_decorations(decorations)
+      if decorations.is_a?(Array)
+        Hash[decorations.map.with_index { |decoration, i| ["key-date-#{i}", decoration] }]
+      else
+        decorations
+      end
+    end
 end

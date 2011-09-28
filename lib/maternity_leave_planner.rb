@@ -2,9 +2,17 @@ class MaternityLeavePlanner
   attr_reader :due_date, :start
   
   def initialize(options = {})
-    raise ArgumentError, 'due_date required' unless options.has_key?(:due_date)
-    @due_date = dateify(options[:due_date])
-    @start = validate_start_date(options[:start] || default_start)
+    due_date = if (options.keys & [:due_year, :due_month, :due_day]).size == 3
+      "#{options[:due_year]}-#{options[:due_month]}-#{options[:due_day]}"
+    elsif options.has_key?(:due_date) 
+      options[:due_date]
+    else
+      nil
+    end
+    if due_date
+      @due_date = dateify(due_date)
+      @start = validate_start_date(options[:start] || default_start)
+    end
   end
   
   # Range of dates which should be used to display all of the information in this planner
@@ -46,14 +54,15 @@ class MaternityLeavePlanner
   end
   
   def key_dates
-    [
-      ["Date by which you must have notified your employer", qualifying_week.last],
-      ["Earliest you may start maternity leave", earliest_start],
-      ["Period of Ordinary Maternity Leave", period_of_ordinary_leave],
-      ["Period of Additional Maternity Leave", period_of_additional_leave],
-      ["Expected week of childbirth", expected_week_of_childbirth],
-      ["Baby's due date", @due_date]
-    ]
+    @due_date && 
+      [
+        ["Date by which you must have notified your employer", qualifying_week.last],
+        ["Earliest you may start maternity leave", earliest_start],
+        ["Period of Ordinary Maternity Leave", period_of_ordinary_leave],
+        ["Period of Additional Maternity Leave", period_of_additional_leave],
+        ["Expected week of childbirth", expected_week_of_childbirth],
+        ["Baby's due date", @due_date]
+      ]
   end
   
   private
