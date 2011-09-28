@@ -1,17 +1,45 @@
-<h2>Key dates</h2>
+
+<% content_for :title, "www.gov.uk - the trial ‘beta’ version of the UK government's official website" %>
+<% content_for :wrapper_class, "wrapper" %>
+
+<!-- related position hack -->
+<div class="related-positioning">
+	<div class="related-container">
+		<div class="related-container-two">
+   		<div class="related">
+			<% if true %>
+				<div class="inner cta" class="group">
+					<ul class="actions">
+						<li><a href="#" class="button"><img src="/images/icon-printer-16.png" alt="" /> Print calendar</a></li>
+						<li><a href="#" class="button"><img src="/images/icon-calendar-16.png" alt="" /> Add to calendar</a></li>
+					</ul>
+				</div>
+			<% end %>
+		     <div class="inner group">
+		       <h2>Related tools &amp; topics</h2>
+		       <nav role="navigation">
+		         <ul>
+              <li>Eligibility calculator</li>
+		         </ul>
+		       </nav>
+		     </div>
+		   </div><!-- end .related -->
+		</div>
+	</div>
+</div>
+<!-- end related position hack -->
+
 
 <section role="main" class="planner group">
 
   <header class="group">
-    <div class="inner">
-      <hgroup>
-        <h1>
-          <span>Planner</span>
-          Maternity leave
-        </h1>
-      </hgroup>
-    </div>
-  </header>
+			<hgroup>
+				<h1>
+					<span>Planner</span>
+					Maternity leave
+				</h1>
+			</hgroup>
+	</header>
 
   <article role="article" class="group">
     <div class="inner date-planner">
@@ -33,7 +61,7 @@
         </form>
       </div>
       
-      <% if true %>
+      <% if false %>
         <%= render partial: "show_maternity_blank" %> 
       <% else %>
         <section class="key-dates">

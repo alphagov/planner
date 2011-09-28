@@ -89,11 +89,55 @@ article .key-dates time{
   border:none;
   background:none;
 }
-
-/* needs replacing when format is a real format i.e. ".planner" to ".planner" */
+/* these should be moved to core.css - they came from publisher.css */
+article {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    float: left;
+    min-height: 40em;
+    position: relative;
+    width: 75%;
+    z-index: 1;
+}
+article .inner {
+    padding: 2em 3em;
+    width: auto;
+}
+#wrapper hgroup {
+    background: none repeat scroll 0 0 #EFECE0;
+    border-bottom: medium none;
+    display: block;
+    margin-right: 14em;
+    padding: 1em 1em 0;
+}
+#wrapper.section hgroup, #wrapper.planner hgroup {
+    margin-right: 12.5em;
+    margin-top: -1em;
+}
 #wrapper.planner article{
     top: -1em;
     width: 80%;
+}
+article header h1 {
+    border-bottom: 1px solid #DDDDDD;
+    font-size: 1.65em;
+    line-height: 1.15em;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0.75em;
+}
+article ol {
+    list-style-type: decimal;
+}
+
+article ul, article ol {
+    padding-left: 1.5em;
+}
+
+article p, article ul, article ol {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0.75em 0;
 }
 #wrapper.planner hgroup h1 {
     background-image: url("/images/icon-transaction-l.png");
@@ -101,7 +145,14 @@ article .key-dates time{
 #wrapper.planner hgroup h1 span {
     color: #CC0000;
 }
-
+#wrapper hgroup h1 {
+    background-repeat: no-repeat;
+    color: inherit;
+    font-size: 1.8em;
+    line-height: 1.05em;
+    min-height: 2.5em;
+    padding: 0.2em 0 0.5em 2.2em;
+}
 #wrapper hgroup span {
     display: block;
     font-size: 0.4em;
