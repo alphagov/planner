@@ -68,7 +68,7 @@
                 <% @planner.errors[:start].each do |error| %>
                   <span class="error-message"><%= error %></span>
                 <% end %>
-                <span class="error-message">You must pick date on or after <%= l(@planner.earliest_start, format: :long)%>)</span>
+                
               </p>
             </div>
           <% end %>
