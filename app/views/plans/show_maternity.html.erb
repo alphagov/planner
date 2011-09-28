@@ -42,10 +42,11 @@
 	</header>
 
   <article role="article" class="group">
-		<div class="error-notification">
-			<p>Something went wrong</p>
-		</div>
+		
     <div class="inner date-planner">
+			<div class="error-notification">
+				<p>Something went wrong</p>
+			</div>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris, pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan mauris, id condimentum enim feugiat a.</p>
       <div class="intro">
         <%= form_tag('/plans/maternity', method: :get)%>
@@ -63,11 +64,11 @@
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
               <%= select_tag "start[month]", options_for_select(months_with_labels, params[:start] && params[:start][:month] || @planner.start.month) %>
               <%= select_tag "start[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:start] && params[:start][:year] || @planner.start.year) %>
-								<span class="error-message">Oops! You can't have that date.</span>
+								<span class="error-message">You must pick date on or after <%= l(@planner.earliest_start, format: :long)%>)</span>
             </p>
 						</div>
           <% end %>
-          <input type="submit" value="Go" class="button" />
+          <input type="submit" value="Display calendar" class="button" />
         </form>
       </div>
       
