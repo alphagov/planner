@@ -16,7 +16,7 @@ class PlansControllerTest < ActionController::TestCase
         'month' => '05',
         'day' => '12'
       }
-      assert_select 'h1', /Key Dates/
+      assert_select 'h1', /Calendar and key dates/
       assert_select '#calendar table', /January 2011/
       assert_select '#calendar table', /May 2011/
       assert_select '#calendar table', /April 2012/
