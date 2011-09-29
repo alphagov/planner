@@ -65,7 +65,12 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
         m = MaternityLeavePlanner.new(due_date: '17-2-2012', start: {'year' => '2011', 'month' => '11', 'day' => '29'})
         assert_equal Date.parse('2011-11-29')..Date.parse('2012-5-28'), Hash[m.key_dates]["Period of Ordinary Maternity Leave"]
       end
-      
+
+      should "accept maternity leave as a number of days before due date" do
+        m_actual = MaternityLeavePlanner.new(due_date: '17-2-2012', start: {'days_before_due' => '7'})
+        m_expected = MaternityLeavePlanner.new(due_date: '17-2-2012', start: '10-2-2012')
+        assert_equal Hash[m_expected.key_dates], Hash[m_actual.key_dates]
+      end
     end
     
   end
