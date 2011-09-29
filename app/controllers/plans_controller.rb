@@ -45,6 +45,22 @@ class PlansController < ApplicationController
     end
     
     def to_ics(key_dates)
-      
+      RiCal.Calendar do |cal|
+        key_dates.each do |label, date_or_range|
+          cal.event do |event|
+            event.summary "Maternity leave planner: #{label}"
+            case date_or_range
+            when Date
+              event.dtstart     date_or_range
+              event.dtend       date_or_range
+            when Range
+              event.dtstart     date_or_range.first
+              event.dtend       date_or_range.last
+            else
+              raise "Unexpected data #{date_or_range.inspect} in key_dates"
+            end
+          end
+        end
+      end.export
     end
 end

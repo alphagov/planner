@@ -62,7 +62,16 @@ class PlansControllerTest < ActionController::TestCase
     end
     
     context "ical" do
-      should_eventually "render key dates as ical" do
+      should "render key dates as ical" do
+        get :show, id: 'maternity', format: :ics, due_date: {
+          'year' => '2011', 
+          'month' => '01',
+          'day' => '12'
+        }
+        parsed_calendars = RiCal.parse_string(@response.body)
+        assert_equal 6, parsed_calendars.first.events.size, "Should have 6 events in the ical file"
+        summaries = parsed_calendars.first.events.map(&:summary)
+        assert_match 'Maternity leave planner: Date by which you must have notified your employer', summaries.first
       end
     end
   end
