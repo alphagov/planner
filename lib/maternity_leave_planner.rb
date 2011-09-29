@@ -6,7 +6,7 @@ class MaternityLeavePlanner
   
   def initialize(options = {})
     @due_date = options[:due_date]
-    @start = options[:start] || default_start
+    @start = options[:start] || {'days_before_due' => 14}
     run_validations! if options[:due_date]
   end
   
@@ -24,7 +24,11 @@ class MaternityLeavePlanner
   end
   
   def start
-    dateify(@start)
+    if @start['days_before_due'] && due_date
+      due_date - @start['days_before_due'].to_i
+    else
+      dateify(@start)
+    end
   rescue ArgumentError
     nil
   end
@@ -47,7 +51,9 @@ class MaternityLeavePlanner
 
   def valid_dates?
     validate_date_attribute(:due_date, @due_date)
-    validate_date_attribute(:start, @start)
+    if ! (@start.is_a?(Hash) && @start['days_before_due'])
+      validate_date_attribute(:start, @start)
+    end
   end
   
   def start_date_in_range?
@@ -100,10 +106,6 @@ class MaternityLeavePlanner
       else
         Date.parse(dateish.to_s)
       end
-    end
-
-    def default_start
-      expected_week_of_childbirth && expected_week_of_childbirth.first - 2 * 7
     end
     
     def first_of_month(date)

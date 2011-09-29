@@ -44,11 +44,11 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris, pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan mauris, id condimentum enim feugiat a.</p>
       <% end %>
       <div class="intro">
-        <h2>Enter the babies due date and when you
+        <h2>Enter the baby's due date and when you
         would like to start the leave to view a calendar and key dates</h2>
         <%= form_tag('/plans/maternity', method: :get)%>
           <div class="<%= @planner.errors[:due_date].any? ? 'error-area' : '' %>">
-            <p>When is the baby's due date?
+            <p>Baby's due date?
               <% default_due_date = Date.today >> 9 %>
               <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %>
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
@@ -61,12 +61,11 @@
           </div>
           <% if ! @planner.earliest_start.nil? %>
             <div class="<%= @planner.errors[:start].any? ? 'error-area' : '' %>">
-              <p>When would you like to start your period of Ordinary Maternity leave?<br >
-                <small>(The earliest you can start is <%= l(@planner.earliest_start, format: :long)%>)</small>
-                <%= select_tag "start[day]", options_for_select(1..31, params[:start] && params[:start][:day] || @planner.start.day) %>
-                <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
-                <%= select_tag "start[month]", options_for_select(months_with_labels, params[:start] && params[:start][:month] || @planner.start.month) %>
-                <%= select_tag "start[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:start] && params[:start][:year] || @planner.start.year) %>
+              <p>Start of maternity leave? 
+                <% options = 1.upto(6).map { |n| [pluralize(n, 'day'), n] } %>
+                <% options.concat(1.upto(11).map { |n| [pluralize(n, 'week'), n * 7] }) %>
+                <%= select_tag "start[days_before_due]", options_for_select(options, params[:start] && params[:start][:days_before_due] || 14) %>
+                before due date
                 <% @planner.errors[:start].each do |error| %>
                   <span class="error-message"><%= error %></span>
                 <% end %>
