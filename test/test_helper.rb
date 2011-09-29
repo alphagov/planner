@@ -21,3 +21,13 @@ module AssertNotPresent
   end
 
 end
+
+module AssertPresent
+  
+  def assert_present(selector, pattern)
+    node_contents = css_select(selector).map {|node| node.to_s}
+    assert node_contents.any? { |node_content| node_content =~ pattern }, 
+      %Q{#{pattern} not found in any of "#{node_contents.join('", "')}" (selected by #{selector})}
+  end
+
+end

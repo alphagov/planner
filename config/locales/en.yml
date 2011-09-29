@@ -5,27 +5,6 @@ en:
   hello: "Hello world"
   errors:
     notification: There's a problem with the options you've selected.
-  plans:
-    show_maternity:
-      intro: |
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque
-        nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum.
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-        per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris,
-        pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan
-        mauris, id condimentum enim feugiat a.
-      heading: |
-        Enter the baby's due date and when you would like to start the 
-        leave to view a calendar and key dates
-      fields:
-        due_date: Baby's due date?
-        start: Start of maternity leave?
-        start_suffix: before due date
-      key_dates: 
-        heading: Calendar and key dates
-        intro: Below is a calendar and list of key dates that explain when maternity leave can be taken.
-        
   day:
     one: 1 day
     other: %{count} days
