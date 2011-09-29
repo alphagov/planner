@@ -120,10 +120,10 @@ article .key-dates time{
 }
 
 #wrapper.planner hgroup h1 {
-    background-image: url("/images/icon-planner-48.png");
+    background-image: url("/images/icon-answer-l.png");
 }
 #wrapper.planner hgroup h1 span {
-    color: #011891;
+    color: #236600;
 }
 
 
@@ -135,3 +135,10 @@ article .key-dates time{
     padding: 0.15em 1em;
 }
 
+.actions {
+	clear:both;
+	list-style-type:none;
+}
+.actions li {
+	display:inline;
+}
