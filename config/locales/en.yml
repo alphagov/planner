@@ -3,6 +3,17 @@
 
 en:
   hello: "Hello world"
+  errors:
+    notification: There's a problem with the options you've selected.
+  day:
+    one: 1 day
+    other: %{count} days
+  week:
+    one: 1 week
+    other: %{count} weeks
   date:
     formats:
       long: "%A %d %B, %Y"
+
+
+        

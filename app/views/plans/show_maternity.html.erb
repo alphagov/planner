@@ -37,18 +37,17 @@
     <div class="inner date-planner">
       <% if @planner.errors.any? %>
         <div class="error-notification">
-          <p>There's a problem with the options you've selected.</p>
+          <p><%= t('errors.notification') %></p>
         </div>
       <% end %>
       <% if @planner.key_dates.nil? %>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris, pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan mauris, id condimentum enim feugiat a.</p>
+      <p><%= t('.intro') %></p>
       <% end %>
       <div class="intro">
-        <h2>Enter the baby's due date and when you
-        would like to start the leave to view a calendar and key dates</h2>
+        <h2><%= t('.heading') %></h2>
         <%= form_tag('/plans/maternity', method: :get)%>
           <div class="<%= @planner.errors[:due_date].any? ? 'error-area' : '' %>">
-            <p>Baby's due date?
+            <p><%= t('.fields.due_date') %>
               <% default_due_date = Date.today >> 9 %>
               <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %>
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
@@ -61,11 +60,11 @@
           </div>
           <% if ! @planner.earliest_start.nil? %>
             <div class="<%= @planner.errors[:start].any? ? 'error-area' : '' %>">
-              <p>Start of maternity leave? 
-                <% options = 1.upto(6).map { |n| [pluralize(n, 'day'), n] } %>
-                <% options.concat(1.upto(11).map { |n| [pluralize(n, 'week'), n * 7] }) %>
+              <p><%= t('.fields.start') %>
+                <% options = 1.upto(6).map { |n| [t('day', count: n), n] } %>
+                <% options.concat(1.upto(11).map { |n| [t('week', count: n), n * 7] }) %>
                 <%= select_tag "start[days_before_due]", options_for_select(options, params[:start] && params[:start][:days_before_due] || 14) %>
-                before due date
+                <%= t('.fields.start_suffix') %>
                 <% @planner.errors[:start].each do |error| %>
                   <span class="error-message"><%= error %></span>
                 <% end %>
@@ -84,9 +83,9 @@
 
       <section class="key-dates">
         <header>
-          <h1>Calendar and key dates</h1>
+          <h1><%= t('.key_dates.heading') %></h1>
         </header>
-        <p>Below is a calendar and list of key dates that explain when maternity leave can be taken.</p>
+        <p><%= t('.key_dates.intro') %></p>
 
         <ol>
           <% @planner.key_dates.each_with_index do |key_date_info, i| %>
