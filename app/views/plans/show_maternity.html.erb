@@ -116,16 +116,16 @@
         decorations: @planner.key_dates
         ).render %>
       </div>
-
+      <div class="inner cta" class="group">
+        <ul class="actions"> 
+          <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
+          <li class="ical">
+            <%= link_to '<span>Add to calendar</span>'.html_safe, plan_path('maternity', params.merge(format: :ics)), class:"button" %>
+          </li>
+        </ul>
+      </div>
     <% end %>
-    <div class="inner cta" class="group">
-      <ul class="actions"> 
-        <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
-        <li class="ical">
-          <%= link_to '<span>Add to calendar</span>'.html_safe, plan_path('maternity', params.merge(format: :ics)), class:"button" %>
-        </li>
-      </ul>
-    </div>
+    
     </div>
     
     
