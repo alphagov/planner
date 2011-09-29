@@ -11,6 +11,12 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
     should 'give nil key_dates if due_date not specified' do
       assert_nil MaternityLeavePlanner.new().key_dates
     end
+
+    should "report validation error if due date is not valid" do
+      m = MaternityLeavePlanner.new(due_date: '31 June 2011')
+      assert ! m.valid?
+      assert m.errors[:due_date].any?
+    end
     
     should 'calculate the expected week of childbirth based on a week from Sunday to Saturday' do
       m = MaternityLeavePlanner.new(due_date: '13 October 2011')

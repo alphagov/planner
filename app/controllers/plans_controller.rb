@@ -1,5 +1,9 @@
 class PlansController < ApplicationController
-  before_filter :find_planner, on: :show
+  before_filter :find_planner, only: :show
+
+  def index
+    @planners = planners
+  end
   
   def show
     if @planner

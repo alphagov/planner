@@ -1,4 +1,4 @@
 Planner::Application.routes.draw do
   resources :plans
-  # root :to => ''
+  root :to => 'plans#index'
 end
