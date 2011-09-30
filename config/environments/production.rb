@@ -43,7 +43,7 @@ Planner::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( planner.css.scss )
+  config.assets.precompile += %w( planner.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -58,10 +58,5 @@ Planner::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  if Rails.env.production?
-    config.middleware.insert 0,  Slimmer::App, :template_host => "/data/vhost/static.alpha.gov.uk/current/public/templates"
-  else
-    config.middleware.insert 0,  Slimmer::App, :template_host => "/data/vhost/static.#{Rails.env}.alphagov.co.uk/current/public/templates"
-  end
-
+  config.middleware.insert_after Rack::Lock,  Slimmer::App, :template_host => "/data/vhost/static.alpha.gov.uk/current/public/templates"
 end
