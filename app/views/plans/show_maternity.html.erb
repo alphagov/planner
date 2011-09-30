@@ -41,7 +41,7 @@
         </div>
       <% end %>
       <% if @planner.key_dates.nil? %>
-      <p><%= t('.intro') %></p>
+        <%= t('.intro').html_safe %>
       <% end %>
       <div class="intro">
         <h2><%= t('.heading') %></h2>

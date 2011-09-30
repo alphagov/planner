@@ -2,21 +2,17 @@ en:
   plans:
     show_maternity:
       intro: |
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        in ipsum lacinia urna ultrices euismod a fermentum nulla. Pellentesque
-        nec dui tellus. Quisque venenatis scelerisque magna vitae fermentum.
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-        per inceptos himenaeos. Duis in neque magna. Curabitur nisi mauris,
-        pharetra nec mattis eget, gravida eu augue. Vivamus lobortis accumsan
-        mauris, id condimentum enim feugiat a.
+        <p>If you work under contract, you usually have the legal right to a year of maternity leave. This is time off work to look after your new baby. </p>
+        <p>It doesn’t matter how long you’ve been in your job, what you’re paid or the hours you work. </p>
+        <p>To get maternity leave, you must tell your employer that you’re pregnant by a set time. There are also rules about when you can start your maternity leave. </p>
+        <p>Maternity leave is split into 2 parts: Ordinary Maternity Leave and Additional Maternity Leave. </p>
       heading: |
-        Enter the baby's due date and when you would like to start the 
-        leave to view a calendar and key dates
+        Enter your details to get personalised results
       fields:
         due_date: Baby's due date?
         start: Start of maternity leave?
         start_suffix: before due date
       key_dates: 
         heading: Calendar and key dates
-        intro: Below is a calendar and list of key dates that explain when maternity leave can be taken.
+        intro: Below is a calendar and list of key dates that explain when you can take your maternity leave. 
   
