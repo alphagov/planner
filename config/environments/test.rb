@@ -39,4 +39,7 @@ Planner::Application.configure do
 
   # Allow pass debug_assets=true as a query parameter to load pages with unpackaged assets
   config.assets.allow_debugging = true
+
+  config.middleware.insert 0,  Slimmer::App, :template_host => "#{config.root}/public/templates"
+
 end
