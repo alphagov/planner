@@ -21,7 +21,8 @@ class PlansController < ApplicationController
   private
     def planners
       {
-        maternity: MaternityLeavePlanner
+        maternity: MaternityLeavePlanner,
+        paternity: PaternityLeavePlanner
       }
     end
     

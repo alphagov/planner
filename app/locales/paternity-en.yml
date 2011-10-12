@@ -1,0 +1,15 @@
+en:
+  plans:
+    show_paternity:
+      intro: |
+        <p>Justice Minister Lord McNally visited the Midlands to see how one local authority is leading the way in transparency and Freedom of Information. The National Archives TNA will publish an international online catalogue of looted art taken by the Nazis for the first time. </p>
+        <p>The highly successful Mossbourne Academy is to open a brand new academy in Hackney. This release presents updated estimates of key public spending outturn series against two frameworks.</p>
+      heading: |
+        Enter your details to get personalised results
+      fields:
+        due_date: Baby's due date?
+        start: Start of paternity leave?
+        start_suffix: after due date
+      key_dates: 
+        heading: Calendar and key dates
+        intro: Below is a calendar and list of key dates that explain when you can take your paternity leave. 

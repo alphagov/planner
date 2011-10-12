@@ -1,0 +1,141 @@
+
+<% content_for :title, "www.gov.uk - the trial ‘beta’ version of the UK government's official website" %>
+<% content_for :wrapper_class, "wrapper" %>
+
+<!-- related position hack -->
+<div class="related-positioning">
+  <div class="related-container">
+    <div class="related-container-two">
+      <div class="related">
+        <div class="inner group">
+          <h2>Related tools &amp; topics</h2>
+          <nav role="navigation">
+            <ul>
+              <li>Eligibility calculator</li>
+            </ul>
+          </nav>
+        </div>
+      </div><!-- end .related -->
+    </div>
+  </div>
+</div>
+<!-- end related position hack -->
+
+
+<section role="main" class="planner group">
+
+  <header class="group">
+    <hgroup>
+      <h1>
+        <span>Quick answer</span>
+        Planning paternity leave
+      </h1>
+    </hgroup>
+  </header>
+<div class="article-container group">
+  <article role="article" class="group">
+    <div class="inner date-planner">
+      <% if @planner.errors.any? %>
+        <div class="error-notification">
+          <p><%= t('errors.notification') %></p>
+        </div>
+      <% end %>
+      <% if @planner.key_dates.nil? %>
+        <%= t('.intro').html_safe %>
+      <% end %>
+      <div class="intro">
+        <h2><%= t('.heading') %></h2>
+        <%= form_tag('/plans/paternity', method: :get)%>
+          <div class="<%= @planner.errors[:due_date].any? ? 'error-area' : '' %>">
+            <p><%= t('.fields.due_date') %>
+              <% default_due_date = Date.today >> 9 %>
+              <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %>
+              <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
+              <%= select_tag "due_date[month]", options_for_select(months_with_labels, params[:due_date] && params[:due_date][:month] || default_due_date.month) %>
+              <%= select_tag "due_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:due_date] && params[:due_date][:year] || default_due_date.year) %>
+              <% @planner.errors[:due_date].each do |error| %>
+                <span class="error-message"><%= error %></span>
+              <% end %>
+            </p>
+          </div>
+          <% if ! @planner.earliest_start.nil? %>
+            <div class="<%= @planner.errors[:start].any? ? 'error-area' : '' %>">
+              <p><%= t('.fields.start') %>
+                <% options = 0.upto(6).map { |n| [t('day', count: n), n] } %>
+                <% options.concat(1.upto(7).map { |n| [t('week', count: n), n * 7] }) %>
+                <%= select_tag "start[days_after_due]", options_for_select(options, params[:start] && params[:start][:days_after_due] || 0) %>
+                <%= t('.fields.start_suffix') %>
+                <% @planner.errors[:start].each do |error| %>
+                  <span class="error-message"><%= error %></span>
+                <% end %>
+                
+              </p>
+            </div>
+          <% end %>
+          <input type="submit" value="Update" class="button" />
+        </form>
+      </div>
+      
+
+    <% if @planner.errors.any? || @planner.key_dates.nil? %>
+      <%= render partial: "show_paternity_blank" %> 
+    <% else %>
+
+      <section class="key-dates">
+        <header>
+          <h1><%= t('.key_dates.heading') %></h1>
+        </header>
+        <p><%= t('.key_dates.intro') %></p>
+
+        <ol>
+          <% @planner.key_dates.each_with_index do |key_date_info, i| %>
+          <% label, value = key_date_info %>
+          <li class="vevent key-date-<%= i %>">
+            <span class="summary"><%= label %></span>
+            <% if value.is_a?(Range) %>
+            <time class="dtstart" datetime="<%= l(value.first, format: :short) %>">
+              <%= l(value.first, format: :long) %>
+            </time> 
+            &ndash;
+            <time class="dtend" datetime="<%= l(value.last, format: :short) %>">
+              <%= l(value.last, format: :long) %>
+            </time>
+            <% else %>
+            <time class="dtstart dtend" datetime="<%= l(value, format: :short) %>">
+              <%= l(value, format: :long) %>
+            </time>
+            <% end %>
+          </li>
+          <% end %>
+        </ol>
+      </section>
+
+      <div id="calendar">
+        <%= CalendarRenderer.new(
+        @planner.range,
+        decorations: @planner.key_dates
+        ).render %>
+      </div>
+      <div class="inner cta" class="group">
+        <ul class="actions"> 
+          <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
+          <li class="ical">
+            <%= link_to '<span>Add to calendar</span>'.html_safe, plan_path('paternity', params.merge(format: :ics)), class:"button" %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    
+    </div>
+    
+    
+  </article>
+  <div class="meta-data">
+		<p>Re-use this data:</p>
+		<ul class="api-links">
+      <li class="json"> <%= link_to 'JSON', plan_path('paternity', params.merge(format: :json)) %></li>
+      <li class="xml"> <%= link_to 'XML', plan_path('paternity', params.merge(format: :xml)) %></li>
+    </ul>
+	</div>
+</div>
+</section>
