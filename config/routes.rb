@@ -1,4 +1,3 @@
 Planner::Application.routes.draw do
-  resources :plans
-  root :to => 'plans#index'
+  match '/:id', :to => 'plans#show', :as => :plan
 end

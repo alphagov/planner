@@ -1,10 +1,6 @@
 class PlansController < ApplicationController
-  before_filter :find_planner, only: :show
+  before_filter :find_planner
 
-  def index
-    @planners = planners
-  end
-  
   def show
     if @planner
       respond_to do |format|
