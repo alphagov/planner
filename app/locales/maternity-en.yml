@@ -18,5 +18,5 @@ en:
         Maternity leave is time off work to look after your new baby. Enter your details below to see when you can take it.
       fields:
         due_date: What is the baby's due date?
-        start: When would you like to start your paternity leave?
+        start: When would you like to start your maternity leave?
         start_suffix: before due date

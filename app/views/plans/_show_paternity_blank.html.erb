@@ -17,7 +17,7 @@
       <p><%= t('.fields.start') %>
         <% options = 0.upto(6).map { |n| [t('day', count: n), n] } %>
         <% options.concat(1.upto(7).map { |n| [t('week', count: n), n * 7] }) %>
-        <%= select_tag "start[days_before_due]", options_for_select(options, params[:start] && params[:start][:days_after_due] || 0) %>
+        <%= select_tag "start[days_after_due]", options_for_select(options, params[:start] && params[:start][:days_after_due] || 0) %>
         <%= t('.fields.start_suffix') %>
         <% @planner.errors[:start].each do |error| %>
           <span class="error-message"><%= error %></span>
