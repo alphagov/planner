@@ -14,15 +14,7 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
       assert ! m.valid?
       assert m.errors[:due_date].any?
     end
-    
-    should 'calculate the expected week of childbirth based on a week from Sunday to Saturday' do
-      m = PaternityLeavePlanner.new(due_date: '13 October 2011')
-      assert_equal Date.parse('9 October 2011')..Date.parse('15 October 2011'), m.expected_week_of_childbirth
-      m = PaternityLeavePlanner.new(due_date: '9 October 2011')
-      assert_equal Date.parse('9 October 2011')..Date.parse('15 October 2011'), m.expected_week_of_childbirth
-      m = PaternityLeavePlanner.new(due_date: '8 October 2011')
-      assert_equal Date.parse('2 October 2011')..Date.parse('8 October 2011'), m.expected_week_of_childbirth
-    end
+
 
     should 'accept due date as separate day, month, year parameters' do
       m = PaternityLeavePlanner.new(due_date: {'day' => '13', 'month' => '10', 'year' => '2011'})
@@ -41,7 +33,6 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
           ["Period of chosen Ordinary Paternity Leave", Date.parse('Sunday, 15 January, 2012')..Date.parse('Saturday, 28 January, 2012')],
           ["Period when you could take Ordinary Paternity Leave", Date.parse('Sunday, 1 January, 2012')..Date.parse('Saturday, February 25, 2012')],
           ["Period of Additional Paternity Leave", Date.parse('Sunday, May 13, 2012')..Date.parse('Saturday, November 10, 2012')],
-          ["Expected week of childbirth", Date.parse('1 January, 2012')..Date.parse('7 January, 2012')],
           ["Baby's due date", Date.parse('1 January 2012')]
         ]
         m = PaternityLeavePlanner.new(due_date: '1-1-2012', start: '15 January, 2012')

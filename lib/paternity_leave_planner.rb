@@ -72,7 +72,6 @@ class PaternityLeavePlanner < BirthPlanner
         ["Period of chosen Ordinary Paternity Leave", period_of_ordinary_leave],
         ["Period when you could take Ordinary Paternity Leave", period_of_potential_ordinary_leave],
         ["Period of Additional Paternity Leave", period_of_additional_leave],
-        ["Expected week of childbirth", expected_week_of_childbirth],
         ["Baby's due date", due_date]
       ]
   end

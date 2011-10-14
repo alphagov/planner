@@ -53,7 +53,6 @@ class MaternityLeavePlanner < BirthPlanner
         ["Earliest you may start maternity leave", earliest_start],
         ["Period of Ordinary Maternity Leave", period_of_ordinary_leave],
         ["Period of Additional Maternity Leave", period_of_additional_leave],
-        ["Expected week of childbirth", expected_week_of_childbirth],
         ["Baby's due date", due_date]
       ]
   end

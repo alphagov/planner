@@ -1,15 +1,28 @@
 en:
   plans:
     show_paternity:
-      intro: |
-        <p>Justice Minister Lord McNally visited the Midlands to see how one local authority is leading the way in transparency and Freedom of Information. The National Archives TNA will publish an international online catalogue of looted art taken by the Nazis for the first time. </p>
-        <p>The highly successful Mossbourne Academy is to open a brand new academy in Hackney. This release presents updated estimates of key public spending outturn series against two frameworks.</p>
-      heading: |
-        Enter your details to get personalised results
-      fields:
-        due_date: Baby's due date?
-        start: Start of paternity leave?
-        start_suffix: after due date
       key_dates: 
         heading: Calendar and key dates
-        intro: Below is a calendar and list of key dates that explain when you can take your paternity leave. 
+        intro: 
+          start: Below is a calendar and list of key dates that explain when you can take your paternity leave.  These are calculated for the baby's due date of
+          middle: and starting
+          end: after due date.
+          extra: To find out more about these dates see the <a href="#">guide to paternity leave</a>.
+    show_paternity_blank:
+      intro: |
+        <!--<p>To get paternity leave, you must:</p>
+        <ul>
+          <li>have been in your job for at least 41 weeks before the start of the week your child is due</li>
+          <li>have an employment contract</li>
+          <li>be the child’s biological father or the mother’s partner</li>
+          <li>be taking time off work to look after your child or the child’s main carer</li>
+        </ul>
+        <p>There are 2 types of paternity leave: Ordinary Paternity Leave (1 or 2 weeks) and Additional Paternity Leave (up to 26 weeks). You can take both.</p>
+        <p>There are rules about when you can take your paternity leave and how to tell your employer. For example, you can only get Additional Paternity Leave if your partner has returned to work.</p>
+        <p>You can also get paternity leave if you or your partner are adopting a child.</p>-->
+      heading: |
+        Paternity leave is time off work to look after your new baby. Enter your details below to see when you can take it.
+      fields:
+        due_date: What is the baby's due date?
+        start: When would you like to start your paternity leave?
+        start_suffix: after due date
