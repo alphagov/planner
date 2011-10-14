@@ -40,10 +40,6 @@
           <p><%= t('errors.notification') %></p>
         </div>
       <% end %>
-      <% if @planner.key_dates.nil? %>
-        <%= t('.intro').html_safe %>
-      <% end %>
-
       
 
     <% if @planner.errors.any? || @planner.key_dates.nil? %>
