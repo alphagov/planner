@@ -6,7 +6,7 @@ group :passenger_compatibility do
   gem 'rake', '0.9.2'
 end
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 gem 'json'
 gem 'jquery-rails'
 gem 'compass', '~> 0.12.alpha.0'
