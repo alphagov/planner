@@ -1,6 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
+# rake is depended on by railties, need to pin the version to avoid
+# passenger getting in a tizzy. May not be an issue with other app servers.
+gem 'rake', '0.9.2'
 gem 'json'
 gem 'jquery-rails'
 gem 'compass', '~> 0.12.alpha.0'
