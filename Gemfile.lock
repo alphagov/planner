@@ -1,8 +1,7 @@
-GIT
-  remote: git@github.com:alphagov/slimmer.git
-  revision: 37848062444e3e27b03a4f06df6c31a90b251682
+PATH
+  remote: ../slimmer
   specs:
-    slimmer (0.7.10)
+    slimmer (0.7.13)
       nokogiri
 
 GEM
@@ -156,7 +155,7 @@ GEM
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
     webmock (1.7.6)
-      addressable (> 2.2.5, ~> 2.2)
+      addressable (~> 2.2, > 2.2.5)
       crack (>= 0.1.7)
 
 PLATFORMS
