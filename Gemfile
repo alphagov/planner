@@ -11,6 +11,7 @@ gem 'json'
 gem 'jquery-rails'
 gem 'compass', '~> 0.12.alpha.0'
 gem "ri_cal", "~> 0.8.8"
+gem 'rummageable', :git => 'git@github.com:alphagov/rummageable.git'
 
 if ENV['SLIMMER_DEV']
   gem 'slimmer', :path => '../slimmer'
