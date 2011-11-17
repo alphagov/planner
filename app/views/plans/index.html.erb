@@ -1,37 +1,9 @@
 <% content_for :title, "www.gov.uk - the trial ‘beta’ version of the UK government's official website" %>
 <% content_for :wrapper_class, "wrapper" %>
 
-<!-- related position hack -->
-<div class="related-positioning">
-  <div class="related-container">
-    <div class="related-container-two">
-      <div class="related">
-        <% if true %>
-        <div class="inner cta" class="group">
-          <ul class="actions">
-            <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
-            <li class="ical"><a href="#" class="button"><span>Add to calendar</span></a></li>
-          </ul>
-        </div>
-        <% end %>
-        <div class="inner group">
-          <h2>Related tools &amp; topics</h2>
-          <nav role="navigation">
-            <ul>
-              <li>Eligibility calculator</li>
-            </ul>
-          </nav>
-        </div>
-      </div><!-- end .related -->
-    </div>
-  </div>
-</div>
-<!-- end related position hack -->
-
-
 <section role="main" class="planner group">
 
-  <header class="group">
+  <header class="page-header group">
     <hgroup>
       <h1>
         <span>Planners</span>
@@ -44,4 +16,30 @@
     <li><%= link_to planner.name, plan_path(id) %></li>
     <% end %>
   </ul>
+  
 </section>
+
+<!-- related position hack -->
+<div class="related-positioning">
+  <div class="related-container">
+    <div class="related">
+      <% if true %>
+      <div class="inner cta" class="group">
+        <ul class="actions">
+          <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
+          <li class="ical"><a href="#" class="button"><span>Add to calendar</span></a></li>
+        </ul>
+      </div>
+      <% end %>
+      <div class="inner group">
+        <h2>Related tools &amp; topics</h2>
+        <nav role="navigation">
+          <ul>
+            <li>Eligibility calculator</li>
+          </ul>
+        </nav>
+      </div>
+    </div><!-- end .related -->
+  </div>
+</div>
+<!-- end related position hack -->
