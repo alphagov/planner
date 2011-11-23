@@ -7,10 +7,10 @@ en:
     notification: There's a problem with the options you've selected.
   day:
     one: 1 day
-    other: %{count} days
+    other: "%{count} days"
   week:
     one: 1 week
-    other: %{count} weeks
+    other: "%{count} weeks"
   date:
     formats:
       long: "%A %d %B, %Y"
