@@ -42,7 +42,7 @@
             <% end %>
           </div>
           <div>
-            <p style="font-weight: bold;"><%= t('.key_dates.intro.start') %> 
+            <p><%= t('.key_dates.intro.start') %> 
               <% default_due_date = Date.today >> 9 %>
               <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %> &nbsp;
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
