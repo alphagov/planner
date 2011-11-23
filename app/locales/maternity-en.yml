@@ -7,7 +7,7 @@ en:
           start: Below is a calendar and list of key dates that explain when you can take your maternity leave.  These are calculated for the baby's due date of
           middle: and starting
           end: before due date.
-          extra: To find out more about these dates see the <a href="#">guide to maternity leave</a>.
+          extra: To find out more about these dates see the <a href="">guide to maternity leave</a>.
     show_maternity_blank:
       intro: |
         <!--<p>If you work under contract, you usually have the legal right to a year of maternity leave. This is time off work to look after your new baby. </p>

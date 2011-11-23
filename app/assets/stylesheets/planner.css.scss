@@ -6,6 +6,20 @@
  *= require_tree . 
 */
 
+article header + form {
+  margin-top: 1em;
+}
+
+article .summary p {
+  line-height: 1.65em;
+  padding-top: 0.1em;
+}
+
+article .summary .button {
+  margin-top: 0.25em;
+  padding: 0.15em 0.35em;
+}
+
 /* Some table overrides from core */
 article td {
     background: none repeat scroll 0 0 #FFFFFF;
@@ -26,10 +40,7 @@ article table {
     margin: 0;
     padding: 0;
 }
-.meta-data{
-	width:100%;
-	margin-bottom:1em;
-}
+
 /* planner calendars e.g. maternity leave */
 .planner table{
   float:left;
@@ -129,7 +140,6 @@ article .key-dates time{
 #wrapper.planner hgroup h1 span {
     color: #236600;
 }
-
 
 #wrapper.planner .intro{
     background-color: #F9F9F9;

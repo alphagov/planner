@@ -41,7 +41,7 @@
               <span class="error-message"><%= error %></span>
             <% end %>
           </div>
-          <div>
+          <div class="summary">
             <p><%= t('.key_dates.intro.start') %> 
               <% default_due_date = Date.today >> 9 %>
               <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %> &nbsp;
