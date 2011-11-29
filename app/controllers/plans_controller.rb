@@ -2,6 +2,7 @@ class PlansController < ApplicationController
   before_filter :find_planner
 
   def show
+    expires_in 24.hours, :public => true unless Rails.env.development?
     if @planner
       respond_to do |format|
         format.html { render "show_#{@planner_name}" }
@@ -13,7 +14,7 @@ class PlansController < ApplicationController
       render file: "#{Rails.root}/public/404.html",  status: 404
     end
   end
-  
+
   private
     def planners
       {
@@ -21,7 +22,7 @@ class PlansController < ApplicationController
         paternity: PaternityLeavePlanner
       }
     end
-    
+
     def find_planner
       @planner = nil
       @planner_name = params[:id].to_sym
