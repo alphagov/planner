@@ -16,9 +16,9 @@ namespace :router do
     url = "planner.#{platform}.alphagov.co.uk/"
     begin
       @logger.info "Registering application..."
-      #@router.applications.create application_id: "planner", backend_url: url
+      @router.applications.create application_id: "planner", backend_url: url
     rescue Router::Conflict
-      #application = @router.applications.find "planner"
+      application = @router.applications.find "planner"
       puts "Application already registered: #{application.inspect}"
     end
   end
@@ -28,10 +28,10 @@ namespace :router do
       path = "/#{slug}"
       @logger.info "Registering #{path}"
       begin
-        #@router.routes.create application_id: "planner", route_type: :prefix,
-        #  incoming_path: route
+        @router.routes.create application_id: "planner", route_type: :prefix,
+          incoming_path: route
       rescue Router::Conflict
-        #route = @router.routes.find path
+        route = @router.routes.find path
         puts "Route already registered: #{route.inspect}"
       end
     end
