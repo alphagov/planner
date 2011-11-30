@@ -24,7 +24,6 @@ namespace :router do
   end
 
   task :register_routes => [ :router_environment, :environment ] do
-    @logger.info "Registering asset path /planner-assets"
     Plan.all_slugs.each do |slug|
       path = "/#{slug}"
       @logger.info "Registering #{path}"
