@@ -48,6 +48,15 @@ module Planner
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Path within public/ where assets are compiled to
+    config.assets.prefix = "planner"
+    config.assets.manifest = Rails.root.join 'public/planner'
+
+    # Paths used by helpers when generating links to assets
+    config.action_controller.assets_dir = Rails.root.join 'public/planner'
+    config.action_controller.javascripts_dir = Rails.root.join 'public/planner/javascripts'
+    config.action_controller.stylesheets_dir = Rails.root.join 'public/planner/stylesheets'
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
