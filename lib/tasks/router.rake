@@ -24,11 +24,14 @@ namespace :router do
   end
 
   task :register_routes => [ :router_environment, :environment ] do
+    @logger.info "Registering asset path /planner-assets"
+    @router.routes.create application_id: "planner", route_type: :prefix,
+      incoming_path: "/planner-assets"
     Plan.all_slugs.each do |slug|
       path = "/#{slug}"
       @logger.info "Registering #{path}"
       begin
-        @router.routes.create application_id: "planner", route_type: :prefix,
+        @router.routes.create application_id: "planner", route_type: :full,
           incoming_path: path
       rescue => e
         puts [ e.message, e.backtrace ].join("\n")
