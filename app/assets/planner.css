@@ -1,0 +1,159 @@
+article header + form {
+  margin-top: 1em;
+}
+
+article .summary p {
+  line-height: 1.65em;
+  padding-top: 0.1em;
+}
+
+article .summary .button {
+  margin-top: 0.25em;
+  padding: 0.15em 0.35em;
+}
+
+/* Some table overrides from core */
+article td {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: none;
+}
+
+article td {
+    padding:none;
+}
+
+article th, article td {
+    line-height: 1.3em;
+    vertical-align: top;
+}
+article table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* planner calendars e.g. maternity leave */
+.planner table{
+  float:left;
+  margin:0 0.8em 0.8em 0.8em;
+  border:2px solid #eee;
+  height: 16em;
+}
+.planner table th{
+  background-color:#eee;
+}
+.planner table th,
+.planner table td{
+  padding:0.3em;
+}
+
+
+.key-date-2, .ordinary-mat{
+  background-color:#d9e7fb;
+}
+
+.key-date-3, .additional-mat{
+  background-color:#ffc0cb;
+}
+.key-date-4, .expecting-week{
+  background-color:#d4c8df;
+}
+
+/* single days, more important */
+.key-date-1, .mat-leave{
+  background-color:#dfffaf;
+}
+.key-date-0, .notify-employer{
+  background-color:#5fc0b7;
+}
+.key-date-5, .due-date{
+  background-color:#ffffcb;
+}
+#calendar td{
+  text-align:center;
+}
+
+.key-dates{
+  clear:both;
+  margin-top:0;
+  list-style-type:none;
+}
+.key-dates ol{
+  padding:0;
+  margin:0.5em 0 0 0;
+}
+.key-dates li{
+  padding:0.2em 0.5em;
+  list-style-type:none;
+}
+article .key-dates .summary{
+  font-weight:normal;
+  font-size:1em;
+}
+article .key-dates time{
+  font-weight:bold;
+}
+.related .actions li .button{
+  background: url("/images/button-overlay.png") repeat-x scroll 0 0 #003399;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 7px 10px 8px;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+.related .actions .print span{
+	background: url("/images/icon-printer-16.png") no-repeat 0 0 !important;
+	padding-left:20px;
+	padding-bottom:2px;
+}
+.related .actions .ical span{
+	background: url("/images/icon-calendar-16.png") no-repeat 0 0 !important;
+	padding-left:20px;
+	padding-bottom:2px;
+}
+.related .actions li{
+  padding: 0.7em 0 0.5em 0em;
+}
+.related .actions{
+  padding-top:1em;
+}
+.related .cta{
+  border:none;
+  background:none;
+}
+
+#wrapper.planner hgroup h1 {
+    background-image: url("/images/icon-answer-l.png");
+}
+#wrapper.planner hgroup h1 span {
+    color: #236600;
+}
+
+#wrapper.planner .intro{
+    background-color: #F9F9F9;
+    border: 2px solid #BBBBBB;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    margin-bottom: 1.5em;
+    padding: 0.15em 1em;
+}
+
+.actions {
+	clear:both;
+	list-style-type:none;
+	margin-left:-4em;
+}
+.actions li {
+	display:inline;
+}
+.examples{
+	list-style-type:none;
+}
+.examples li{
+	display:inline;
+	padding-right:3em;
+}
+
