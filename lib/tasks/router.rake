@@ -29,7 +29,7 @@ namespace :router do
       @logger.info "Registering #{path}"
       begin
         @router.routes.create application_id: "planner", route_type: :prefix,
-          incoming_path: route
+          incoming_path: path
       rescue => e
         puts [ e.message, e.backtrace ].join("\n")
       end
