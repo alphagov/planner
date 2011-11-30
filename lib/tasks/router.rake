@@ -30,9 +30,8 @@ namespace :router do
       begin
         @router.routes.create application_id: "planner", route_type: :prefix,
           incoming_path: route
-      rescue Router::Conflict
-        route = @router.routes.find path
-        puts "Route already registered: #{route.inspect}"
+      rescue => e
+        puts [ e.message, e.backtrace ].join("\n")
       end
     end
   end
