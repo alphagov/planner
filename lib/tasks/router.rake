@@ -6,7 +6,7 @@ namespace :router do
     @logger = Logger.new STDOUT
     @logger.level = Logger::DEBUG
 
-    @router = Router::Client.new http, @logger
+    @router = Router::Client.new :logger => @logger
   end
 
   task :register_application => :router_environment do
