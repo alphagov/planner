@@ -118,7 +118,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ri_cal (0.8.8)
-    router-client (2.0.1)
+    router-client (2.0.2)
       builder
       null_logger
     sass (3.1.10)
@@ -174,7 +174,7 @@ DEPENDENCIES
   rails (= 3.1.1)
   rake (= 0.9.2)
   ri_cal (~> 0.8.8)
-  router-client
+  router-client (= 2.0.2)
   rummageable!
   sass-rails (~> 3.1.0)
   shoulda (~> 2.11.3)

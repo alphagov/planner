@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 source 'https://gems.gemfury.com/vo6ZrmjBQu5szyywDszE/'
 
 group :router do
-  gem 'router-client', :require => 'router/client'
+  gem 'router-client', '2.0.2', :require => 'router/client'
 end
 
 # passenger compatability
