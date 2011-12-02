@@ -22,6 +22,10 @@ namespace :router do
       @logger.info "Registering #{path}"
       @router.routes.update application_id: "planner", route_type: :full,
         incoming_path: path
+      @router.routes.update application_id: "planner", route_type: :full,
+        incoming_path: "#{path}.json"
+      @router.routes.update application_id: "planner", route_type: :full,
+        incoming_path: "#{path}.xml"
     end
   end
 
