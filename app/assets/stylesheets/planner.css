@@ -44,8 +44,9 @@ article table {
   margin: 0 1% 1em 1%;
   border:2px solid #eee;
   height: 16em;
-  width: 31.5%;
+  width: 31%;
 }
+
 .planner table th{
   background-color:#eee;
 }
