@@ -34,11 +34,17 @@ article table {
 }
 
 /* planner calendars e.g. maternity leave */
+
+.planner #calendar {
+  margin: 1em 0;
+}
+
 .planner table{
   float:left;
-  margin:0 0.8em 0.8em 0.8em;
+  margin: 0 1% 1em 1%;
   border:2px solid #eee;
   height: 16em;
+  width: 31.5%;
 }
 .planner table th{
   background-color:#eee;
