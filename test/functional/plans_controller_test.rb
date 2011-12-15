@@ -23,6 +23,14 @@ class PlansControllerTest < ActionController::TestCase
       assert_select '#calendar table', /April 2012/
     end
 
+    should "send analytics headers" do
+      get :show, id: 'maternity'
+      assert_equal "Family",  @response.headers["X-Slimmer-Section"]
+      assert_equal "855",     @response.headers["X-Slimmer-Need-ID"].to_s
+      assert_equal "planner", @response.headers["X-Slimmer-Format"]
+      assert_equal "citizen", @response.headers["X-Slimmer-Proposition"]
+    end
+
     context "invalid date" do
       setup do
         get :show, id: 'maternity', due_date: {

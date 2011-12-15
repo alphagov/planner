@@ -18,17 +18,25 @@ class PlansController < ApplicationController
   private
     def planners
       {
-        maternity: MaternityLeavePlanner,
-        paternity: PaternityLeavePlanner
+        maternity: {
+          planner: MaternityLeavePlanner,
+          need_id: 855,
+        },
+        paternity: {
+          planner: PaternityLeavePlanner,
+          need_id: 1947,
+        },
       }
     end
 
     def find_planner
       @planner = nil
       @planner_name = params[:id].to_sym
-      if planners.has_key?(@planner_name)
-        @planner = planners[@planner_name].new(params.symbolize_keys)
-      end
+      details = planners[@planner_name] or return
+
+      @planner = details[:planner].new(params.symbolize_keys)
+      set_slimmer_headers need_id: details[:need_id]
+
     rescue ArgumentError
       nil
     end
