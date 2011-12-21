@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:alphagov/gds-api-adapters.git
+  revision: 634b500729fb806d4150605cb379155deca31008
+  specs:
+    gds-api-adapters (0.0.13)
+      null_logger
+      plek
+
+GIT
   remote: git@github.com:alphagov/rummageable.git
   revision: e66b12f47dadd466db2d8407628b31b7f29e8054
   specs:
@@ -169,6 +177,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.0)
   compass (~> 0.12.alpha.0)
   factory_girl_rails
+  gds-api-adapters!
   jquery-rails
   json
   mocha

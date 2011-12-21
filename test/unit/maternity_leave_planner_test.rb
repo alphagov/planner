@@ -12,12 +12,17 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
       assert_nil MaternityLeavePlanner.new().key_dates
     end
 
+    should "have slug, title and need_id" do
+      assert_equal "maternity", MaternityLeavePlanner.slug
+      assert_equal "Planning your maternity leave", MaternityLeavePlanner.title
+      assert_equal 855, MaternityLeavePlanner.need_id
+    end
+    
     should "report validation error if due date is not valid" do
       m = MaternityLeavePlanner.new(due_date: '31 June 2011')
       assert ! m.valid?
       assert m.errors[:due_date].any?
     end
-    
 
     should 'accept due date as separate day, month, year parameters' do
       m = MaternityLeavePlanner.new(due_date: {'day' => '13', 'month' => '10', 'year' => '2011'})

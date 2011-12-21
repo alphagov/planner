@@ -1,14 +1,13 @@
 class Plan
-  PLANS = {
-    maternity: MaternityLeavePlanner,
-    paternity: PaternityLeavePlanner
-  }.freeze
-
   def self.all_slugs
-    PLANS.keys.sort_by { |s| s.to_s }
+    all.map { |planner| planner.slug }.sort
   end
 
+  def self.all
+    [MaternityLeavePlanner, PaternityLeavePlanner]
+  end
+  
   def self.load slug, attributes = {}
-    PLANS[slug.to_sym].new attributes
+    all.find {|planner| planner.slug == slug}.new attributes
   end
 end

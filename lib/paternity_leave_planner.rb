@@ -6,6 +6,10 @@ class PaternityLeavePlanner < BirthPlanner
     run_validations! if options[:due_date]
   end
   
+  def self.slug; "paternity"; end
+  def self.title; "Planning your paternity leave"; end
+  def self.need_id; 1947; end
+  
   def start
     if @start['days_after_due'] && due_date
       due_date + @start['days_after_due'].to_i
