@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'compass', '~> 0.12.alpha.0'
 gem "ri_cal", "~> 0.8.8"
 gem 'rummageable', :git => 'git@github.com:alphagov/rummageable.git'
-gem 'gds-api-adapters', :git => 'git@github.com:alphagov/gds-api-adapters.git'
+gem 'gds-api-adapters', '~> 0.0.15'
 
 if ENV['SLIMMER_DEV']
   gem 'slimmer', :path => '../slimmer'
