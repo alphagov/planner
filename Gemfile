@@ -11,6 +11,8 @@ group :passenger_compatibility do
   gem 'rake', '0.9.2'
 end
 
+gem 'exception_notification'
+
 gem 'rails', '3.1.3'
 gem 'json'
 gem 'jquery-rails'
