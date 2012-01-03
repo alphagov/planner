@@ -62,6 +62,5 @@ Planner::Application.configure do
   config.action_mailer.default_url_options = { :host => Plek.current.find('planner') }
   config.action_mailer.delivery_method = :ses
 
-  config.middleware.delete Slimmer::App
   config.middleware.use Slimmer::App
 end
