@@ -21,6 +21,7 @@ gem "ri_cal", "~> 0.8.8"
 gem 'rummageable', :git => 'git@github.com:alphagov/rummageable.git'
 gem 'gds-api-adapters', '~> 0.0.15'
 gem 'aws-ses', :require => 'aws/ses'
+gem 'gelf'
 
 if ENV['SLIMMER_DEV']
   gem 'slimmer', :path => '../slimmer'
