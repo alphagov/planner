@@ -7,7 +7,7 @@ en:
           start: Below is a calendar and list of key dates that explain when you can take your paternity leave.  These are calculated for the baby's due date of
           middle: and starting
           end: after due date.
-          extra: To find out more about these dates see the <a href="#">guide to paternity leave</a>.
+          extra: To find out more about these dates see the <a href="/paternity">guide to paternity leave</a>.
     show_paternity_blank:
       intro: |
         <!--<p>To get paternity leave, you must:</p>
