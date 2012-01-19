@@ -7,7 +7,7 @@ class PaternityLeavePlanner < BirthPlanner
   end
   
   def self.slug; "paternity"; end
-  def self.title; "Planning your paternity leave"; end
+  def self.title; "Planning your Paternity Leave"; end
   def self.need_id; 1947; end
   
   def start

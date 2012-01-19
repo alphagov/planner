@@ -7,7 +7,7 @@ class MaternityLeavePlanner < BirthPlanner
   end
 
   def self.slug; "maternity"; end
-  def self.title; "Planning your maternity leave"; end
+  def self.title; "Planning your Maternity Leave"; end
   def self.need_id; 855; end  
 
   def start
@@ -54,7 +54,7 @@ class MaternityLeavePlanner < BirthPlanner
     due_date && 
       [
         ["Date by which you must have notified your employer", qualifying_week.last],
-        ["Earliest you may start maternity leave", earliest_start],
+        ["Earliest you may start Maternity Leave", earliest_start],
         ["Period of Ordinary Maternity Leave", period_of_ordinary_leave],
         ["Period of Additional Maternity Leave", period_of_additional_leave],
         ["Baby's due date", due_date]

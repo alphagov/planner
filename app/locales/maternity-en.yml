@@ -4,19 +4,19 @@ en:
       key_dates: 
         heading: Calendar and key dates
         intro: 
-          start: Below is a calendar and list of key dates that explain when you can take your maternity leave.  These are calculated for the baby's due date of
+          start: Below is a calendar and list of key dates that explain when you can take your Maternity Leave.  These are calculated for the baby's due date of
           middle: and starting
           end: before due date.
-          extra: To find out more about these dates see the <a href="/maternity">guide to maternity leave</a>.
+          extra: To find out more about these dates see the <a href="/maternity">guide to Maternity Leave</a>.
     show_maternity_blank:
       intro: |
-        <!--<p>If you work under contract, you usually have the legal right to a year of maternity leave. This is time off work to look after your new baby. </p>
+        <!--<p>If you work under contract, you usually have the legal right to a year of Maternity Leave. This is time off work to look after your new baby. </p>
         <p>It doesn’t matter how long you’ve been in your job, what you’re paid or the hours you work. </p>
-        <p>To get maternity leave, you must tell your employer that you’re pregnant by a set time. There are also rules about when you can start your maternity leave. </p>
-        <p>Maternity leave is split into 2 parts: Ordinary Maternity Leave and Additional Maternity Leave. </p>-->
+        <p>To get Maternity Leave, you must tell your employer that you’re pregnant by a set time. There are also rules about when you can start your Maternity Leave. </p>
+        <p>Maternity Leave is split into 2 parts: Ordinary Maternity Leave and Additional Maternity Leave. </p>-->
       heading: |
-        Maternity leave is time off work to look after your new baby. Enter your details below to see when you can take it.
+        Maternity Leave is time off work to look after your new baby. Enter your details below to see when you can take it.
       fields:
         due_date: What is the baby's due date?
-        start: When would you like to start your maternity leave?
+        start: When would you like to start your Maternity Leave?
         start_suffix: before due date

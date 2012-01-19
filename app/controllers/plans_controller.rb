@@ -54,7 +54,7 @@ class PlansController < ApplicationController
       RiCal.Calendar do |cal|
         key_dates.each do |label, date_or_range|
           cal.event do |event|
-            event.summary "Maternity leave planner: #{label}"
+            event.summary "Maternity Leave planner: #{label}"
             case date_or_range
             when Date
               event.dtstart     date_or_range
