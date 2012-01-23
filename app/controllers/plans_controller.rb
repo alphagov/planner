@@ -41,7 +41,7 @@ class PlansController < ApplicationController
     rescue ArgumentError
       nil
     end
-    
+
     def ranges_as_hashes(key_dates)
       key_dates.map do |label, date_or_range|
         if date_or_range.is_a?(Range)
@@ -50,7 +50,7 @@ class PlansController < ApplicationController
         [label, date_or_range]
       end
     end
-    
+
     def to_ics(key_dates)
       RiCal.Calendar do |cal|
         key_dates.each do |label, date_or_range|
