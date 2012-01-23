@@ -6,7 +6,7 @@ class PlansController < ApplicationController
     expires_in 24.hours, :public => true unless Rails.env.development?
     if @planner
       respond_to do |format|
-        format.html { render "show_#{@planner_name}" }
+        format.html { render "show_#{@planner.class.slug}" }
         format.xml { render :xml => ranges_as_hashes(@planner.key_dates).to_xml }
         format.json { render :json => ranges_as_hashes(@planner.key_dates).to_json }
         format.ics { render :text => to_ics(@planner.key_dates) }
@@ -32,8 +32,8 @@ class PlansController < ApplicationController
 
     def find_planner
       @planner = nil
-      @planner_name = params[:id].to_sym
-      details = planners[@planner_name] or return
+      planner_name = params[:id].to_sym
+      details = planners[planner_name] or return
 
       @planner = details[:planner].new(params.symbolize_keys)
       set_slimmer_headers need_id: details[:need_id]
