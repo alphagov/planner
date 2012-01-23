@@ -19,11 +19,10 @@
           <p><%= t('errors.notification') %></p>
         </div>
       <% end %>
-      
 
-    <% if @planner.errors.any? || @planner.key_dates.nil? %>
-      <%= render partial: "show_maternity_blank" %> 
-    <% else %>
+      <% if @planner.errors.any? || @planner.key_dates.nil? %>
+        <%= render partial: "show_maternity_blank" %>
+      <% else %>
 
       <section class="key-dates">
         <header>
@@ -42,18 +41,18 @@
             <% end %>
           </div>
           <div class="summary">
-            <p><%= t('.key_dates.intro.start') %> 
+            <p><%= t('.key_dates.intro.start') %>
               <% default_due_date = Date.today >> 9 %>
               <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %> &nbsp;
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
               <%= select_tag "due_date[month]", options_for_select(months_with_labels, params[:due_date] && params[:due_date][:month] || default_due_date.month) %> &nbsp;
               <%= select_tag "due_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:due_date] && params[:due_date][:year] || default_due_date.year) %>
 
-              <%= t('.key_dates.intro.middle') %> 
+              <%= t('.key_dates.intro.middle') %>
                 <% options = 0.upto(6).map { |n| [t('day', count: n), n] } %>
                 <% options.concat(1.upto(7).map { |n| [t('week', count: n), n * 7] }) %>
                 <%= select_tag "start[days_before_due]", options_for_select(options, params[:start] && params[:start][:days_before_due] || 0) %>
-                <%= t('.key_dates.intro.end') %> 
+                <%= t('.key_dates.intro.end') %>
                 <input type="submit" value="Update" class="button" />
               </p>
             </div>
@@ -69,7 +68,7 @@
             <% if value.is_a?(Range) %>
             <time class="dtstart" datetime="<%= value.first %>">
               <%= value.first.to_formatted_s(:short_ordinal) %>
-            </time> 
+            </time>
             &ndash;
             <time class="dtend" datetime="<%= value.last %>">
               <%= value.last.to_formatted_s(:short_ordinal) %>
@@ -91,7 +90,7 @@
         ).render %>
       </div>
       <div class="inner cta" class="group">
-        <ul class="actions"> 
+        <ul class="actions">
           <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
           <li class="ical">
             <%= link_to '<span>Add to calendar</span>'.html_safe, plan_path('maternity', params.merge(format: :ics)), class:"button" %>
@@ -99,7 +98,7 @@
         </ul>
       </div>
     <% end %>
-    
+
     </div>
   </article>
   <div class="meta-data">

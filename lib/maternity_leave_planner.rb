@@ -1,5 +1,5 @@
 class MaternityLeavePlanner < BirthPlanner
-  
+
   def initialize(options = {})
     @due_date = options[:due_date]
     @start = options[:start] || {'days_before_due' => 14}
@@ -8,7 +8,7 @@ class MaternityLeavePlanner < BirthPlanner
 
   def self.slug; "maternity"; end
   def self.title; "Planning your Maternity Leave"; end
-  def self.need_id; 855; end  
+  def self.need_id; 855; end
 
   def start
     if @start['days_before_due'] && due_date
@@ -19,7 +19,7 @@ class MaternityLeavePlanner < BirthPlanner
   rescue ArgumentError
     nil
   end
-  
+
   def earliest_start
     expected_week_of_childbirth && expected_week_of_childbirth.first - 11 * 7
   end
@@ -30,7 +30,7 @@ class MaternityLeavePlanner < BirthPlanner
       validate_date_attribute(:start, @start)
     end
   end
-  
+
   def start_date_in_range?
     return unless due_date
     if start < earliest_start
@@ -39,7 +39,7 @@ class MaternityLeavePlanner < BirthPlanner
       errors.add(:start, "You must pick date on or before your due date")
     end
   end
-  
+
   def period_of_ordinary_leave
     if ! start.nil?
       start .. start + 26 * 7 - 1
@@ -49,9 +49,9 @@ class MaternityLeavePlanner < BirthPlanner
   def period_of_additional_leave
     period_of_ordinary_leave && weeks_later(period_of_ordinary_leave, 26)
   end
-  
+
   def key_dates
-    due_date && 
+    due_date &&
       [
         ["Date by which you must have notified your employer", qualifying_week.last],
         ["Earliest you may start Maternity Leave", earliest_start],
