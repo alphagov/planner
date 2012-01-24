@@ -1,6 +1,5 @@
 class PlansController < ApplicationController
   before_filter :find_planner
-  rescue_from ActionView::Template::Error, with: :simple_400
 
   def show
     expires_in 24.hours, :public => true unless Rails.env.development?
@@ -69,9 +68,5 @@ class PlansController < ApplicationController
           end
         end
       end.export
-    end
-
-    def simple_400
-      head 400 and return
     end
 end
