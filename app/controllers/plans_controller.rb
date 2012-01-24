@@ -6,9 +6,13 @@ class PlansController < ApplicationController
     if @planner
       respond_to do |format|
         format.html { render "show_#{@planner.class.slug}" }
-        format.xml { render :xml => ranges_as_hashes(@planner.key_dates).to_xml }
-        format.json { render :json => ranges_as_hashes(@planner.key_dates).to_json }
-        format.ics { render :text => to_ics(@planner.key_dates) }
+        if @planner.errors.any? || @planner.key_dates.nil?
+          format.any(:xml, :json, :ics) { head 400 }
+        else
+          format.xml { render :xml => ranges_as_hashes(@planner.key_dates).to_xml }
+          format.json { render :json => ranges_as_hashes(@planner.key_dates).to_json }
+          format.ics { render :text => to_ics(@planner.key_dates) }
+        end
       end
     else
       render file: "#{Rails.root}/public/404.html",  status: 404
