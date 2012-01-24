@@ -93,7 +93,7 @@
         <ul class="actions">
           <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
           <li class="ical">
-            <%= link_to '<span>Add to calendar</span>'.html_safe, plan_path('maternity', params.merge(format: :ics)), class:"button" %>
+            <%= link_to '<span>Add to calendar</span>'.html_safe, plan_path('maternity', @planner.recognized_params.merge(format: :ics)), class:"button" %>
           </li>
         </ul>
       </div>
@@ -104,8 +104,8 @@
   <div class="meta-data">
 		<p>Re-use this data:</p>
 		<ul class="api-links">
-      <li class="json"> <%= link_to 'JSON', plan_path('maternity', params.merge(format: :json)) %></li>
-      <li class="xml"> <%= link_to 'XML', plan_path('maternity', params.merge(format: :xml)) %></li>
+      <li class="json"> <%= link_to 'JSON', plan_path('maternity', @planner.recognized_params.merge(format: :json)) %></li>
+      <li class="xml"> <%= link_to 'XML', plan_path('maternity', @planner.recognized_params.merge(format: :xml)) %></li>
     </ul>
 	</div>
 </div>

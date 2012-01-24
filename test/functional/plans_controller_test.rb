@@ -82,4 +82,13 @@ class PlansControllerTest < ActionController::TestCase
       end
     end
   end
+
+  should "not include bogus parameters in alternative formats" do
+    get :show, id: 'maternity', thing: "BOGUS", due_date: {
+      'year' => '2011',
+      'month' => '01',
+      'day' => '12'
+    }
+    assert_no_match %r{BOGUS}, response.body
+  end
 end
