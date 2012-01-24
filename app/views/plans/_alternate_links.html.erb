@@ -1,0 +1,5 @@
+<% content_for :head do %>
+<link rel="alternate" type="application/json" href="<%= plan_path(@planner.class.slug, @planner.recognized_params.merge(format: :json)) %>">
+<link rel="alternate" type="application/xml" href="<%= plan_path(@planner.class.slug, @planner.recognized_params.merge(format: :xml)) %>">
+<link rel="alternate" type="text/calendar" href="<%= plan_path(@planner.class.slug, @planner.recognized_params.merge(format: :ics)) %>">
+<% end %>

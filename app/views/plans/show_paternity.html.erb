@@ -91,15 +91,16 @@
         ).render %>
       </div>
       <div class="inner cta" class="group">
-        <ul class="actions"> 
+        <ul class="actions">
           <li class="print"><a href="#" onclick="window.print()" class="button"><span>Print calendar</span></a></li><!-- we actually want this link to open a more print-friendly version of the page -->
           <li class="ical">
             <%= link_to '<span>Add to calendar</span>'.html_safe, plan_path('paternity', @planner.recognized_params.merge(format: :ics)), class:"button" %>
           </li>
         </ul>
       </div>
+      <%= render partial: 'alternate_links' %>
     <% end %>
-    
+
     </div>
   </article>
   <!--<div class="meta-data">
@@ -111,3 +112,4 @@
 	</div>-->
 </div>
 </section>
+
