@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield :title %> | Benefits and schemes | www.gov.uk</title>
+    <title><%= yield :title %> | Benefits and schemes | GOV.UK</title>
     <%= stylesheet_link_tag "planner" %>
     <%= csrf_meta_tags %>
     <%= yield :head %>
+    <meta name="x-section-name" content="Family" />
+    <meta name="x-section-link" content="/browse/family" />
+    <meta name="x-section-format" content="planner" />
   </head>
 <body class="citizen">
   <div id="wrapper" class="planner">

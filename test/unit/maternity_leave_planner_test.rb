@@ -7,14 +7,14 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
   # http://www.dwp.gov.uk/publications/specialist-guides/technical-guidance/ni17a-a-guide-to-maternity/statutory-maternity-pay-smp/
   
   
-  context "Maternity leave planner" do
+  context "Maternity Leave planner" do
     should 'give nil key_dates if due_date not specified' do
       assert_nil MaternityLeavePlanner.new().key_dates
     end
 
     should "have slug, title and need_id" do
       assert_equal "maternity", MaternityLeavePlanner.slug
-      assert_equal "Planning your maternity leave", MaternityLeavePlanner.title
+      assert_equal "Planning your Maternity Leave", MaternityLeavePlanner.title
       assert_equal 855, MaternityLeavePlanner.need_id
     end
     
@@ -43,7 +43,7 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
       should 'list key dates' do
         expected = [
           ["Date by which you must have notified your employer", Date.parse('05 November, 2011')],
-          ["Earliest you may start maternity leave", Date.parse('27 November, 2011')],
+          ["Earliest you may start Maternity Leave", Date.parse('27 November, 2011')],
           ["Period of Ordinary Maternity Leave", Date.parse('Monday, November 28, 2011')..Date.parse('Sunday, May 27, 2012')],
           ["Period of Additional Maternity Leave", Date.parse('Monday, May 28, 2012')..Date.parse('Sunday, November 25, 2012')],
           ["Baby's due date", Date.parse('17 February 2012')]
@@ -52,17 +52,17 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
         assert_equal expected, m.key_dates
       end
       
-      should "report validation error if requested maternity leave out of range" do
+      should "report validation error if requested Maternity Leave out of range" do
         assert ! MaternityLeavePlanner.new(due_date: '17-2-2012', start: '26-11-2011').valid?
         assert ! MaternityLeavePlanner.new(due_date: '17-2-2012', start: '17-2-2012').valid?
       end
 
-      should "accept maternity leave as separate day, month, year parameters" do
+      should "accept Maternity Leave as separate day, month, year parameters" do
         m = MaternityLeavePlanner.new(due_date: '17-2-2012', start: {'year' => '2011', 'month' => '11', 'day' => '29'})
         assert_equal Date.parse('2011-11-29')..Date.parse('2012-5-28'), Hash[m.key_dates]["Period of Ordinary Maternity Leave"]
       end
 
-      should "accept maternity leave as a number of days before due date" do
+      should "accept Maternity Leave as a number of days before due date" do
         m_actual = MaternityLeavePlanner.new(due_date: '17-2-2012', start: {'days_before_due' => '7'})
         m_expected = MaternityLeavePlanner.new(due_date: '17-2-2012', start: '10-2-2012')
         assert_equal Hash[m_expected.key_dates], Hash[m_actual.key_dates]

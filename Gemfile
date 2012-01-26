@@ -41,6 +41,7 @@ group :test do
   gem 'test-unit'
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'capybara'
 end
 
 group :assets do

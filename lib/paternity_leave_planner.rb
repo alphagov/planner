@@ -5,11 +5,15 @@ class PaternityLeavePlanner < BirthPlanner
     @start = options[:start] || {'days_after_due' => 1}
     run_validations! if options[:due_date]
   end
-  
+
+  def recognized_params
+    {due_date: @due_date, start: @start}
+  end
+
   def self.slug; "paternity"; end
-  def self.title; "Planning your paternity leave"; end
+  def self.title; "Planning your Paternity Leave"; end
   def self.need_id; 1947; end
-  
+
   def start
     if @start['days_after_due'] && due_date
       due_date + @start['days_after_due'].to_i
@@ -19,11 +23,11 @@ class PaternityLeavePlanner < BirthPlanner
   rescue ArgumentError
     nil
   end
-  
+
   def earliest_start
     due_date
   end
-  
+
   def latest_start
     due_date + 8 * 7 - 1
   end
@@ -34,7 +38,7 @@ class PaternityLeavePlanner < BirthPlanner
       validate_date_attribute(:start, @start)
     end
   end
-  
+
   def start_date_in_range?
     return unless due_date
     if start >= latest_start
@@ -43,7 +47,7 @@ class PaternityLeavePlanner < BirthPlanner
       errors.add(:start, "You must pick date on or after your due date")
     end
   end
-  
+
   def ordinary_leave_ends
     anticipated_end = start + 2 * 7 -1
     if anticipated_end > latest_start
@@ -52,11 +56,11 @@ class PaternityLeavePlanner < BirthPlanner
       anticipated_end
     end
   end
-  
+
   def period_of_potential_ordinary_leave
     due_date .. latest_start
   end
-  
+
   def period_of_ordinary_leave
     if ! start.nil?
       start .. ordinary_leave_ends
@@ -68,9 +72,9 @@ class PaternityLeavePlanner < BirthPlanner
     additional_leave_end = additional_leave_start + 26 * 7 -1
     additional_leave_start .. additional_leave_end
   end
-  
+
   def key_dates
-    due_date && 
+    due_date &&
       [
         ["Date by which you must have notified your employer", qualifying_week.last],
         ["Period of chosen Ordinary Paternity Leave", period_of_ordinary_leave],

@@ -59,7 +59,7 @@ class PlansControllerTest < ActionController::TestCase
         expected_content = 
           [
             ["Date by which you must have notified your employer","2010-10-02"],
-            ["Earliest you may start maternity leave","2010-10-24"],
+            ["Earliest you may start Maternity Leave","2010-10-24"],
             ["Period of Ordinary Maternity Leave",{"from" => "2010-12-29","to" => "2011-06-28"}],
             ["Period of Additional Maternity Leave",{"from" => "2011-06-29","to" => "2011-12-27"}],
             ["Baby's due date","2011-01-12"]
@@ -78,8 +78,17 @@ class PlansControllerTest < ActionController::TestCase
         parsed_calendars = RiCal.parse_string(@response.body)
         assert_equal 5, parsed_calendars.first.events.size, "Should have 5 events in the ical file"
         summaries = parsed_calendars.first.events.map(&:summary)
-        assert_match 'Maternity leave planner: Date by which you must have notified your employer', summaries.first
+        assert_match 'Maternity Leave planner: Date by which you must have notified your employer', summaries.first
       end
     end
+  end
+
+  should "not include bogus parameters in alternative formats" do
+    get :show, id: 'maternity', thing: "BOGUS", due_date: {
+      'year' => '2011',
+      'month' => '01',
+      'day' => '12'
+    }
+    assert_no_match %r{BOGUS}, response.body
   end
 end

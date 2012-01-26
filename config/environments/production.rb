@@ -35,7 +35,6 @@ Planner::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
-  config.logger = GELF::Logger.new("graylog.cluster", "12201", max_size = 'WAN', { :facility => "planner" })
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
@@ -59,9 +58,12 @@ Planner::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_controller.asset_host = Plek.current.find('assets')
+  config.action_controller.asset_host = Plek.current.find('cdn')
+
+  config.slimmer.cache_templates = true
+  config.slimmer.asset_host = Plek.current.find('assets')
+
   config.action_mailer.default_url_options = { :host => Plek.current.find('planner') }
   config.action_mailer.delivery_method = :ses
 
-  config.middleware.use Slimmer::App
 end

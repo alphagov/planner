@@ -5,10 +5,14 @@ class PlansController < ApplicationController
     expires_in 24.hours, :public => true unless Rails.env.development?
     if @planner
       respond_to do |format|
-        format.html { render "show_#{@planner_name}" }
-        format.xml { render :xml => ranges_as_hashes(@planner.key_dates).to_xml }
-        format.json { render :json => ranges_as_hashes(@planner.key_dates).to_json }
-        format.ics { render :text => to_ics(@planner.key_dates) }
+        format.html { render "show_#{@planner.class.slug}" }
+        if @planner.errors.any? || @planner.key_dates.nil?
+          format.any(:xml, :json, :ics) { head 400 }
+        else
+          format.xml { render :xml => ranges_as_hashes(@planner.key_dates).to_xml }
+          format.json { render :json => ranges_as_hashes(@planner.key_dates).to_json }
+          format.ics { render :text => to_ics(@planner.key_dates) }
+        end
       end
     else
       render file: "#{Rails.root}/public/404.html",  status: 404
@@ -31,8 +35,8 @@ class PlansController < ApplicationController
 
     def find_planner
       @planner = nil
-      @planner_name = params[:id].to_sym
-      details = planners[@planner_name] or return
+      planner_name = params[:id].to_sym
+      details = planners[planner_name] or return
 
       @planner = details[:planner].new(params.symbolize_keys)
       set_slimmer_headers need_id: details[:need_id]
@@ -40,7 +44,7 @@ class PlansController < ApplicationController
     rescue ArgumentError
       nil
     end
-    
+
     def ranges_as_hashes(key_dates)
       key_dates.map do |label, date_or_range|
         if date_or_range.is_a?(Range)
@@ -49,12 +53,12 @@ class PlansController < ApplicationController
         [label, date_or_range]
       end
     end
-    
+
     def to_ics(key_dates)
       RiCal.Calendar do |cal|
         key_dates.each do |label, date_or_range|
           cal.event do |event|
-            event.summary "Maternity leave planner: #{label}"
+            event.summary "Maternity Leave planner: #{label}"
             case date_or_range
             when Date
               event.dtstart     date_or_range
