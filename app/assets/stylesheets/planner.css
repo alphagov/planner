@@ -21,7 +21,9 @@ article td {
 article td {
     padding:none;
 }
-
+.planner article tr:nth-child(2n) td {
+    background-color: none;
+}
 article th, article td {
     line-height: 1.3em;
     vertical-align: top;
@@ -41,40 +43,46 @@ article table {
 
 .planner table{
   float:left;
-  margin: 0 1% 1em 1%;
   border:2px solid #eee;
   height: 16em;
-  width: 31%;
+  margin: 1em;
+  width: 44%;
 }
 
-.planner table th{
+/*.planner table th{
   background-color:#eee;
 }
 .planner table th,
 .planner table td{
   padding:0.3em;
-}
+}*/
 
 
-.key-date-2, .ordinary-mat{
+.planner article tr .key-date-2, 
+.planner article tr .ordinary-mat{
   background-color:#d9e7fb;
 }
 
-.key-date-3, .additional-mat{
+.planner article tr .key-date-3, 
+.planner article tr.additional-mat{
   background-color:#ffc0cb;
 }
-.key-date-4, .expecting-week{
+.planner article tr .key-date-4, 
+.planner article tr.expecting-week{
   background-color:#d4c8df;
 }
 
 /* single days, more important */
-.key-date-1, .mat-leave{
+.planner article tr .key-date-1, 
+.planner article tr.mat-leave{
   background-color:#dfffaf;
 }
-.key-date-0, .notify-employer{
+.planner article tr .key-date-0, 
+.planner article tr.notify-employer{
   background-color:#5fc0b7;
 }
-.key-date-5, .due-date{
+.planner article tr .key-date-5, 
+.planner article tr .due-date{
   background-color:#ffffcb;
 }
 #calendar td{
@@ -94,11 +102,12 @@ article table {
   padding:0.2em 0.5em;
   list-style-type:none;
 }
-article .key-dates .summary{
+.citizen article .key-dates .summary{
+  background-color:transparent;
   font-weight:normal;
   font-size:1em;
 }
-article .key-dates time{
+.citizen article .key-dates time{
   font-weight:bold;
 }
 .related .actions li .button{
