@@ -44,7 +44,7 @@ article table {
 .planner table{
   float:left;
   border:2px solid #eee;
-  height: 16em;
+  height: 19.5em;
   margin: 1em;
   width: 44%;
 }
@@ -58,30 +58,30 @@ article table {
 }*/
 
 
-.planner article tr .key-date-2, 
+.planner article .key-date-2, 
 .planner article tr .ordinary-mat{
   background-color:#d9e7fb;
 }
 
-.planner article tr .key-date-3, 
+.planner article .key-date-3, 
 .planner article tr.additional-mat{
   background-color:#ffc0cb;
 }
-.planner article tr .key-date-4, 
+.planner article .key-date-4, 
 .planner article tr.expecting-week{
   background-color:#d4c8df;
 }
 
 /* single days, more important */
-.planner article tr .key-date-1, 
+.planner article .key-date-1, 
 .planner article tr.mat-leave{
   background-color:#dfffaf;
 }
-.planner article tr .key-date-0, 
+.planner article .key-date-0, 
 .planner article tr.notify-employer{
   background-color:#5fc0b7;
 }
-.planner article tr .key-date-5, 
+.planner article .key-date-5, 
 .planner article tr .due-date{
   background-color:#ffffcb;
 }
@@ -102,7 +102,7 @@ article table {
   padding:0.2em 0.5em;
   list-style-type:none;
 }
-.citizen article .key-dates .summary{
+.citizen article .key-dates ol .summary{
   background-color:transparent;
   font-weight:normal;
   font-size:1em;
