@@ -18,7 +18,7 @@ gem 'json'
 gem 'jquery-rails'
 gem 'compass', '~> 0.12.alpha.0'
 gem "ri_cal", "~> 0.8.8"
-gem 'rummageable', :git => 'git@github.com:alphagov/rummageable.git'
+gem 'rummageable'
 gem 'gds-api-adapters', '~> 0.0.15'
 gem 'gds-warmup-controller'
 gem 'aws-ses', :require => 'aws/ses'
