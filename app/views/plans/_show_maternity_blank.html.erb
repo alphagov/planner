@@ -1,6 +1,6 @@
-<div class="intro">
-  <h2><%= t('.heading') %></h2>
-  <%= form_tag('/maternity', method: :get)%>
+<div class="summary"><p><%= t('.heading') %></p></div>
+<div class="intro">  
+  <%= form_tag('/maternity', method: :post)%>
     <div class="<%= @planner.errors[:due_date].any? ? 'error-area' : '' %>">
       <p><%= t('.fields.due_date') %>
         <% default_due_date = Date.today >> 9 %>
