@@ -44,7 +44,7 @@ article table {
 .planner table{
   float:left;
   border:2px solid #eee;
-  height: 19.5em;
+  height: 23em;
   margin: 1em;
   width: 44%;
 }
@@ -97,6 +97,9 @@ article table {
 .key-dates li{
   padding:0.4em 0.5em;
   list-style-type:none;
+}
+.key-dates p{
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 .citizen article .key-dates ol .key-date-summary {
   font-weight:normal;
