@@ -53,31 +53,31 @@ article table {
 .planner article .key-date-2, 
 .planner article #calendar tr .ordinary-mat,
 .planner article #calendar tr:nth-child(2n) .ordinary-mat {
-  background-color:#d9e7fb;
+  background-color:#F0E7D5;
 }
 
 .planner article .key-date-3, 
 .planner article #calendar tr.additional-mat,
 .planner article #calendar tr:nth-child(2n).additional-mat td {
-  background: #ffc0cb;
+  background: #CCE0D5;
 }
 .planner article .key-date-4, 
 .planner article #calendar tr.expecting-week{
-  background-color:#d4c8df;
+  background-color:#EFF0D1;
 }
 
 /* single days, more important */
 .planner article .key-date-1, 
 .planner article #calendar tr.mat-leave{
-  background-color:#dfffaf;
+  background-color:#D5E8F4;
 }
 .planner article .key-date-0, 
 .planner article #calendar tr.notify-employer{
-  background-color:#5fc0b7;
+  background-color:#FDEBF2;
 }
 .planner article .key-date-5, 
 .planner article #calendar tr .due-date{
-  background-color:#ffffcb;
+  background-color:#EFF0D1;
 }
 #calendar td{
   text-align:center;
@@ -87,10 +87,12 @@ article table {
   clear:both;
   margin-top:0;
   list-style-type:none;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 .key-dates ol{
   padding:0;
   margin:0.5em 0 0 0;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 .key-dates li{
   padding:0.4em 0.5em;
