@@ -41,14 +41,14 @@
             <% end %>
           </div>
           <div class="summary">
-            <p><%= t('.key_dates.intro.start') %>
+            <p><%= t('.key_dates.intro.start') %>:
               <% default_due_date = Date.today >> 9 %>
               <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %> &nbsp;
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
               <%= select_tag "due_date[month]", options_for_select(months_with_labels, params[:due_date] && params[:due_date][:month] || default_due_date.month) %> &nbsp;
               <%= select_tag "due_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:due_date] && params[:due_date][:year] || default_due_date.year) %>
 
-              <%= t('.key_dates.intro.middle') %>
+              <%= t('.key_dates.intro.middle') %>:
                 <% options = 0.upto(6).map { |n| [t('day', count: n), n] } %>
                 <% options.concat(1.upto(7).map { |n| [t('week', count: n), n * 7] }) %>
                 <%= select_tag "start[days_before_due]", options_for_select(options, params[:start] && params[:start][:days_before_due] || 0) %>
