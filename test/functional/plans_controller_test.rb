@@ -7,7 +7,7 @@ class PlansControllerTest < ActionController::TestCase
   context 'GET /plans/maternity' do
     should "show welcome message when no input given" do
       get :show, id: 'maternity'
-      assert_select '.date-planner h2', /How this works/
+      assert_not_present 'h1', /Calendar and key dates/
       assert_not_present '.error-notification', /a problem/
     end
     
