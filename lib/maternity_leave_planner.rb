@@ -57,11 +57,11 @@ class MaternityLeavePlanner < BirthPlanner
   def key_dates
     due_date &&
       [
-        ["Date by which you must have notified your employer", qualifying_week.last],
-        ["Earliest you may start Maternity Leave", earliest_start],
-        ["Period of Ordinary Maternity Leave", period_of_ordinary_leave],
-        ["Period of Additional Maternity Leave", period_of_additional_leave],
-        ["Baby's due date", due_date]
+        ["You must tell your employer by:", qualifying_week.last],
+        ["You can start Maternity Leave on:", earliest_start],
+        ["Ordinary Maternity Leave (first 26 weeks):", period_of_ordinary_leave],
+        ["Additional Maternity Leave (up to 26 weeks more):", period_of_additional_leave],
+        ["Your baby is due on:", due_date]
       ]
   end
 

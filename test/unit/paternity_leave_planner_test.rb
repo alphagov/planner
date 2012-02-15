@@ -34,11 +34,11 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
     context "key dates" do
       should 'list key dates' do
         expected = [
-          ["Date by which you must have notified your employer", Date.parse('24 September, 2011')],
-          ["Period of chosen Ordinary Paternity Leave", Date.parse('Sunday, 15 January, 2012')..Date.parse('Saturday, 28 January, 2012')],
-          ["Period when you could take Ordinary Paternity Leave", Date.parse('Sunday, 1 January, 2012')..Date.parse('Saturday, February 25, 2012')],
-          ["Period of Additional Paternity Leave", Date.parse('Sunday, May 13, 2012')..Date.parse('Saturday, November 10, 2012')],
-          ["Baby's due date", Date.parse('1 January 2012')]
+          ["You must tell your employer by:", Date.parse('24 September, 2011')],
+          ["Your chosen Ordinary Paternity Leave dates:", Date.parse('Sunday, 15 January, 2012')..Date.parse('Saturday, 28 January, 2012')],
+          ["You could take Ordinary Paternity Leave during this period:", Date.parse('Sunday, 1 January, 2012')..Date.parse('Saturday, February 25, 2012')],
+          ["You could take Additional Paternity Leave during this period:", Date.parse('Sunday, May 13, 2012')..Date.parse('Saturday, November 10, 2012')],
+          ["Your baby is due on:", Date.parse('1 January 2012')]
         ]
         m = PaternityLeavePlanner.new(due_date: '1-1-2012', start: '15 January, 2012')
         assert_equal expected, m.key_dates
@@ -51,7 +51,7 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
 
       should "accept Paternity Leave as separate day, month, year parameters" do
         m = PaternityLeavePlanner.new(due_date: '10-2-2012', start: {'year' => '2012', 'month' => '2', 'day' => '24'})
-        assert_equal Date.parse('2012-2-24')..Date.parse('2012-3-8'), Hash[m.key_dates]["Period of chosen Ordinary Paternity Leave"]
+        assert_equal Date.parse('2012-2-24')..Date.parse('2012-3-8'), Hash[m.key_dates]["Your chosen Ordinary Paternity Leave dates:"]
       end
 
       should "accept Paternity Leave as a number of days after due date" do

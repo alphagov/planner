@@ -76,11 +76,11 @@ class PaternityLeavePlanner < BirthPlanner
   def key_dates
     due_date &&
       [
-        ["Date by which you must have notified your employer", qualifying_week.last],
-        ["Period of chosen Ordinary Paternity Leave", period_of_ordinary_leave],
-        ["Period when you could take Ordinary Paternity Leave", period_of_potential_ordinary_leave],
-        ["Period of Additional Paternity Leave", period_of_additional_leave],
-        ["Baby's due date", due_date]
+        ["You must tell your employer by:", qualifying_week.last],
+        ["Your chosen Ordinary Paternity Leave dates:", period_of_ordinary_leave],
+        ["You could take Ordinary Paternity Leave during this period:", period_of_potential_ordinary_leave],
+        ["You could take Additional Paternity Leave during this period:", period_of_additional_leave],
+        ["Your baby is due on:", due_date]
       ]
   end
 
