@@ -11,7 +11,7 @@ class PlansController < ApplicationController
         else
           format.xml { render :xml => ranges_as_hashes(@planner.key_dates).to_xml }
           format.json { render :json => ranges_as_hashes(@planner.key_dates).to_json }
-          format.ics { render :text => to_ics(@planner.key_dates) }
+          format.ics { render :text => to_ics(@planner.key_dates, @planner.class.slug) }
         end
       end
     else
@@ -54,11 +54,11 @@ class PlansController < ApplicationController
       end
     end
 
-    def to_ics(key_dates)
+    def to_ics(key_dates, title)
       RiCal.Calendar do |cal|
         key_dates.each do |label, date_or_range|
           cal.event do |event|
-            event.summary "Maternity Leave planner: #{label}"
+            event.summary "#{title.capitalize} Leave planner: #{label}"
             case date_or_range
             when Date
               event.dtstart     date_or_range
