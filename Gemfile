@@ -27,7 +27,7 @@ gem 'gelf'
 if ENV['SLIMMER_DEV']
   gem 'slimmer', :path => '../slimmer'
 else
-  gem 'slimmer', '~> 1.1'
+  gem 'slimmer', '~> 1.1.39'
 end
 
 group :test do
