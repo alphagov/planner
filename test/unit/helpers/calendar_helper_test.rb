@@ -8,6 +8,7 @@ class CalendarHelperTest < ActionView::TestCase
 
   teardown do
     I18n.load_path = @original_load_path
+    I18n.reload!
   end
 
   test "has_t should return false if a translation key does not exist" do
