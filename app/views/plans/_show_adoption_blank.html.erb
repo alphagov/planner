@@ -1,0 +1,30 @@
+<div class="summary"><p><%= t('.heading') %></p></div>
+<div class="intro">
+  <%= form_tag('/adoption', method: :post)%>
+    <div class="<%= @planner.errors[:due_date].any? ? 'error-area' : '' %>">
+      <p><%= t('.fields.due_date') %>
+        <% default_due_date = Date.today >> 9 %>
+        <%= select_tag "due_date[day]", options_for_select(1..31, params[:due_date] && params[:due_date][:day] || default_due_date.day) %> &nbsp;
+        <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
+        <%= select_tag "due_date[month]", options_for_select(months_with_labels, params[:due_date] && params[:due_date][:month] || default_due_date.month) %> &nbsp;
+        <%= select_tag "due_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:due_date] && params[:due_date][:year] || default_due_date.year) %>
+        <% @planner.errors[:due_date].each do |error| %>
+          <span class="error-message"><%= error %></span>
+        <% end %>
+      </p>
+    </div>
+    <div class="<%= @planner.errors[:start].any? ? 'error-area' : '' %>">
+      <p><%= t('.fields.start') %>
+        <% options = 0.upto(6).map { |n| [t('day', count: n), n] } %>
+        <% options.concat(1.upto(7).map { |n| [t('week', count: n), n * 7] }) %>
+        <%= select_tag "start[days_after_due]", options_for_select(options, params[:start] && params[:start][:days_after_due] || 0) %>
+        <%= t('.fields.start_suffix') %>
+        <% @planner.errors[:start].each do |error| %>
+          <span class="error-message"><%= error %></span>
+        <% end %>
+
+      </p>
+    </div>
+    <input type="submit" value="Calculate" class="button" />
+  </form>
+</div>
