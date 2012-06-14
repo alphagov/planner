@@ -1,13 +1,14 @@
 class AdoptionLeavePlanner < BirthPlanner
 
+
   def initialize(options = {})
-    @due_date = options[:due_date]
-    @start = options[:start] || {'days_after_due' => 1}
-    run_validations! if options[:due_date]
+    @arrival_date = options[:arrival_date]
+    @match_date = options[:match_date]
+    @start = options[:start] || {'days_before_arrival' => 14}
   end
 
   def recognized_params
-    {due_date: @due_date, start: @start}
+    {arrival_date: @arrival_date, match_date: @match_date, start: @start}
   end
 
   def self.slug; "adoption"; end
@@ -15,8 +16,8 @@ class AdoptionLeavePlanner < BirthPlanner
   def self.need_id; 1948; end
 
   def start
-    if @start['days_after_due'] && due_date
-      due_date + @start['days_after_due'].to_i
+    if @start['days_before_arrival'] && arrival_date
+      arrival_date - @start['days_before_arrival'].to_i
     else
       dateify(@start)
     end
@@ -25,62 +26,75 @@ class AdoptionLeavePlanner < BirthPlanner
   end
 
   def earliest_start
-    due_date - 14
+    arrival_date - 14
   end
 
-  def latest_start
-    due_date + 8 * 7 - 1
+  def arrival_date
+    dateify(@arrival_date)
+  rescue ArgumentError
+    nil
+  end
+
+  def match_date
+    dateify(@match_date)
+  rescue ArgumentError
+    nil
   end
 
   def valid_dates?
-    validate_date_attribute(:due_date, @due_date)
-    if ! (@start.is_a?(Hash) && @start['days_after_due'])
+    validate_date_attribute(:arrival_date, @arrival_date)
+    validate_date_attribute(:match_date, @match_date)
+    if ! (@start.is_a?(Hash) && @start['days_before_arrival'])
       validate_date_attribute(:start, @start)
     end
   end
 
   def start_date_in_range?
-    return unless due_date
-    if start >= latest_start
+    return unless arrival_date && match_date
+    if start < earliest_start
       errors.add(:start, "You must pick date on or before #{localize(latest_start, format: :long)}")
     elsif start < due_date
       errors.add(:start, "You must pick date on or after the arrival date")
     end
   end
 
-  def ordinary_leave_ends
-    anticipated_end = start + 26 * 7 -1
-    if anticipated_end > latest_start
-      latest_start
-    else
-      anticipated_end
-    end
-  end
-
-  def period_of_potential_ordinary_leave
-    due_date .. latest_start
-  end
-
   def period_of_ordinary_leave
     if ! start.nil?
-      start .. ordinary_leave_ends
+      start .. start + 26 * 7
     end
+  end
+
+  def expected_week_of_arrival
+    if !arrival_date.nil?
+      sunday = arrival_date - arrival_date.wday
+      saturday = sunday + 6
+      sunday..saturday
+    end
+  end
+
+  def expected_week_of_match
+    if !match_date.nil?
+      sunday = match_date - match_date.wday
+      saturday = sunday + 6
+      sunday..saturday
+    end
+  end
+
+  def qualifying_week
+    expected_week_of_match && weeks_later(expected_week_of_match, -1)
   end
 
   def period_of_additional_leave
-    additional_leave_start = ordinary_leave_ends
-    additional_leave_end = additional_leave_start + 26 * 7 -1
-    additional_leave_start .. additional_leave_end
+    period_of_ordinary_leave && weeks_later(period_of_ordinary_leave, 26)
   end
 
   def key_dates
-    due_date &&
+    arrival_date && match_date &&
       [
         ["You must tell your employer by:", qualifying_week.last],
-        ["Your chosen Ordinary Adoption Leave dates:", period_of_ordinary_leave],
-        ["You could take Ordinary Adoption Leave during this period:", period_of_potential_ordinary_leave],
-        ["You could take Additional Adoption Leave during this period:", period_of_additional_leave],
-        ["Your adopted child arrives on:", due_date]
+        ["Earliest date you can start your Adoption Leave:", earliest_start],
+        ["Ordinary Adoption Leave:", period_of_ordinary_leave],
+        ["Additional Adoption Leave:", period_of_additional_leave],
       ]
   end
 
