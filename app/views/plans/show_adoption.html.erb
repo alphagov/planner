@@ -62,7 +62,7 @@
               <%= t('.key_dates.intro.leave_before') %>:
                 <% options = 0.upto(6).map { |n| [t('day', count: n), n] } %>
                 <% options.concat(1.upto(7).map { |n| [t('week', count: n), n * 7] }) %>
-                <%= select_tag "start[days_after_due]", options_for_select(options, params[:start] && params[:start][:days_after_due] || 0) %>
+                <%= select_tag "start[days_before_arrival]", options_for_select(options, params[:start] && params[:start][:days_before_arrival] || 0) %>
                 <%= t('.key_dates.intro.end') %>
                 <input type="submit" value="Update" class="button" />
               </p>
