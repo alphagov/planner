@@ -46,14 +46,14 @@
             <% end %>
           </div>
           <div class="summary">
-            <p><%= t('.key_dates.intro.start') %>:
+            <p><%= t('.key_dates.intro.start') %>:<br>
               <% default_match_date = Date.today + 7 %>
               <%= select_tag "match_date[day]", options_for_select(1..31, params[:match_date] && params[:match_date][:day] || default_match_date.day) %> &nbsp;
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
               <%= select_tag "match_date[month]", options_for_select(months_with_labels, params[:match_date] && params[:match_date][:month] || default_match_date.month) %> &nbsp;
               <%= select_tag "match_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:match_date] && params[:match_date][:year] || default_match_date.year) %><br>
 
-              <%= t('.key_dates.intro.arrival') %>:
+              <%= t('.key_dates.intro.arrival') %>:<br>
               <%= select_tag "arrival_date[day]", options_for_select(1..31, params[:arrival_date] && params[:arrival_date][:day] || default_arrival_date.day) %> &nbsp;
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
               <%= select_tag "arrival_date[month]", options_for_select(months_with_labels, params[:arrival_date] && params[:arrival_date][:month] || default_arrival_date.month) %> &nbsp;
