@@ -48,20 +48,27 @@
           <div class="summary">
             <p><%= t('.key_dates.intro.start') %>:<br>
               <% default_match_date = Date.today + 7 %>
+              <label for="match_date_day" class="visuallyhidden">Day of match</label>
               <%= select_tag "match_date[day]", options_for_select(1..31, params[:match_date] && params[:match_date][:day] || default_match_date.day) %> &nbsp;
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
+              <label for="match_date_month" class="visuallyhidden">Month of match</label>
               <%= select_tag "match_date[month]", options_for_select(months_with_labels, params[:match_date] && params[:match_date][:month] || default_match_date.month) %> &nbsp;
+              <label for="match_date_year" class="visuallyhidden">Year of match</label>
               <%= select_tag "match_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:match_date] && params[:match_date][:year] || default_match_date.year) %><br>
 
               <%= t('.key_dates.intro.arrival') %>:<br>
+              <label for="arrival_date_day" class="visuallyhidden">Day of arrival</label>
               <%= select_tag "arrival_date[day]", options_for_select(1..31, params[:arrival_date] && params[:arrival_date][:day] || default_arrival_date.day) %> &nbsp;
               <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
+              <label for="arrival_date_month" class="visuallyhidden">Month of arrival</label>
               <%= select_tag "arrival_date[month]", options_for_select(months_with_labels, params[:arrival_date] && params[:arrival_date][:month] || default_arrival_date.month) %> &nbsp;
+              <label for="arrival_date_year" class="visuallyhidden">Year of arrival</label>
               <%= select_tag "arrival_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:arrival_date] && params[:arrival_date][:year] || default_arrival_date.year) %><br>
 
               <%= t('.key_dates.intro.leave_before') %>:
                 <% options = 0.upto(6).map { |n| [t('day', count: n), n] } %>
                 <% options.concat(1.upto(7).map { |n| [t('week', count: n), n * 7] }) %>
+                <label for="start_days_before_arrival" class="visuallyhidden">Days before arrival to take leave</label>
                 <%= select_tag "start[days_before_arrival]", options_for_select(options, params[:start] && params[:start][:days_before_arrival] || 0) %>
                 <%= t('.key_dates.intro.end') %>
                 <input type="submit" value="Update" class="button" />
