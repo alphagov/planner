@@ -43,7 +43,7 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
       should 'list key dates' do
         expected = [
           ["You must tell your employer by:", Date.parse('05 November, 2011')],
-          ["You can start Maternity Leave on:", Date.parse('27 November, 2011')],
+          ["The earliest you can start your Maternity Leave is:", Date.parse('27 November, 2011')],
           ["Ordinary Maternity Leave (first 26 weeks):", Date.parse('Monday, November 28, 2011')..Date.parse('Sunday, May 27, 2012')],
           ["Additional Maternity Leave (up to 26 weeks more):", Date.parse('Monday, May 28, 2012')..Date.parse('Sunday, November 25, 2012')],
           ["Your baby is due on:", Date.parse('17 February 2012')]
