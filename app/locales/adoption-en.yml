@@ -8,7 +8,7 @@ en:
             Below is a calendar and list of key dates that explain when you can take your Adoption Leave. These dates are for matching with your child by
           arrival: and an arrival date of
           leave_before: with leave starting
-          end: before the due date
+          end: before the arrival date
     show_adoption_blank:
       intro: |
       heading: |

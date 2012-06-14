@@ -69,8 +69,6 @@
             </div>
         </form>
 
-        <p><%= t('.key_dates.intro.extra').html_safe %></p>
-
         <ol>
           <% @planner.key_dates.each_with_index do |key_date_info, i| %>
           <% label, value = key_date_info %>
