@@ -3,7 +3,7 @@ require 'capybara/rails'
 
 SimpleCov.at_exit do
   coverage_file = File.absolute_path(File.join(Rails.root, 'coverage.txt'))
-  expected_coverage = File.read(coverage_file).to_f
+  expected_coverage = File.exists?(coverage_file) ? File.read(coverage_file).to_f : 0.0
   result = SimpleCov.result
   result.format!
   coverage = (result.covered_percent * 100).to_i.to_f / 100
