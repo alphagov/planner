@@ -1,5 +1,6 @@
 class AdoptionLeavePlanner < BirthPlanner
 
+  validate :valid_dates?, :start_date_in_range?, :arrival_after_match_date?
 
   def initialize(options = {})
     @arrival_date = options[:arrival_date]
@@ -44,6 +45,7 @@ class AdoptionLeavePlanner < BirthPlanner
   def valid_dates?
     validate_date_attribute(:arrival_date, @arrival_date)
     validate_date_attribute(:match_date, @match_date)
+
     if ! (@start.is_a?(Hash) && @start['days_before_arrival'])
       validate_date_attribute(:start, @start)
     end
@@ -52,9 +54,16 @@ class AdoptionLeavePlanner < BirthPlanner
   def start_date_in_range?
     return unless arrival_date && match_date
     if start < earliest_start
-      errors.add(:start, "You must pick date on or before #{localize(latest_start, format: :long)}")
-    elsif start < due_date
-      errors.add(:start, "You must pick date on or after the arrival date")
+      errors.add(:start, "You must pick date on or after #{localize(earliest_start, format: :long)}")
+    elsif start > arrival_date
+      errors.add(:start, "You must pick date on or before the arrival date")
+    end
+  end
+
+  def arrival_after_match_date?
+    return unless arrival_date && match_date
+    if match_date >= arrival_date
+      errors.add(:arrival_date, "Arrival date must be after match date")
     end
   end
 
