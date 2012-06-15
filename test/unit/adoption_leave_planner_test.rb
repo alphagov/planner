@@ -42,6 +42,7 @@ class AdoptionLeavePlannerTest < ActiveSupport::TestCase
       should 'list key dates' do
         expected = [
           ["You must tell your employer by:", Date.parse('11 February, 2012')],
+          ["Child's arrival date:", Date.parse('5 March, 2012')],
           ["Earliest date you can start your Adoption Leave:", Date.parse('20 February, 2012')],
           ["Ordinary Adoption Leave:", Date.parse('3 March, 2012')..Date.parse('1 September, 2012')],
           ["Additional Adoption Leave:", Date.parse("1 September 2012")..Date.parse("2 March 2013")]
