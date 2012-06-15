@@ -101,6 +101,7 @@ class AdoptionLeavePlanner < BirthPlanner
     arrival_date && match_date &&
       [
         ["You must tell your employer by:", qualifying_week.last],
+        ["Child's arrival date:", arrival_date],
         ["Earliest date you can start your Adoption Leave:", earliest_start],
         ["Ordinary Adoption Leave:", period_of_ordinary_leave],
         ["Additional Adoption Leave:", period_of_additional_leave],
