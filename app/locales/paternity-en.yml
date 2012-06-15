@@ -1,8 +1,8 @@
 en:
   plans:
     show_paternity:
-      key_dates: 
-        intro: 
+      key_dates:
+        intro:
           start: Below is a calendar and list of key dates that explain when you can take your Paternity Leave. These dates are for your baby's due date of
           middle: and a start date of
           end: after due date.
@@ -22,5 +22,5 @@ en:
         Paternity Leave is time off work to look after your new baby. Enter your details below to see when you can take it.
       fields:
         due_date: What is the baby's due date?
-        start: When would you like to start your Paternity Leave?
-        start_suffix: after due date
+        start: You like to start your Paternity Leave
+        start_suffix: after due date.
