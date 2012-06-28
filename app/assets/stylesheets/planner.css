@@ -1,3 +1,9 @@
+.citizen .planner .summary{
+  background-color:#d5ecea;
+  color:#333;
+  font-weight:300;
+}
+
 article header + form {
   margin-top: 1em;
 }
@@ -5,11 +11,12 @@ article header + form {
 article .summary p {
   line-height: 1.65em;
   padding-top: 0.1em;
+  font-weight:300;
 }
 
 article .summary .button {
-  margin-top: 0.25em;
-  padding: 0.15em 0.35em;
+  display:block;
+  margin-top:1em;
 }
 
 /* Some table overrides from core */
@@ -27,6 +34,7 @@ article tr:nth-child(2n) td {
 article th, article td {
     line-height: 1.3em;
     vertical-align: top;
+    padding:0.2em;
 }
 article table {
     border-collapse: collapse;
@@ -87,22 +95,19 @@ article table {
   clear:both;
   margin-top:0;
   list-style-type:none;
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 .key-dates ol{
   padding:0;
-  margin:0.5em 0 0 0;
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  margin:2em 0;
 }
 .key-dates li{
   padding:0.4em 0.5em;
   list-style-type:none;
+  margin: 0 -1em;
 }
-.key-dates p{
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
+
 .citizen article .key-dates ol .key-date-summary {
-  font-weight:normal;
+  font-weight:300;
   font-size:1em;
 }
 .citizen article .key-dates time{
