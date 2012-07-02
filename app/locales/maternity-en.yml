@@ -1,13 +1,11 @@
 en:
   plans:
     show_maternity:
-      key_dates: 
-        heading: Calendar and key dates
-        intro: 
+      key_dates:
+        intro:
           start: Below is a calendar and list of key dates that explain when you can take your Maternity Leave. These dates are for your baby's due date of
           middle: and a start date of
           end: before due date.
-          extra: Read the guide to <a href="/maternity-leave">Maternity Leave</a>.
     show_maternity_blank:
       intro: |
         <!--<p>If you work under contract, you usually have the legal right to a year of Maternity Leave. This is time off work to look after your new baby. </p>
@@ -18,5 +16,5 @@ en:
         Maternity Leave is time off work to look after your new baby. Enter your details below to see when you can take it.
       fields:
         due_date: What is the baby's due date?
-        start: When would you like to start your Maternity Leave?
-        start_suffix: before due date
+        start: You would like to start your Maternity Leave
+        start_suffix: before due date.

@@ -17,7 +17,6 @@ class PlansControllerTest < ActionController::TestCase
         'month' => '05',
         'day' => '12'
       }
-      assert_present 'h1', /Calendar and key dates/
       assert_select '#calendar table', /January 2011/
       assert_select '#calendar table', /May 2011/
       assert_select '#calendar table', /April 2012/
@@ -59,7 +58,7 @@ class PlansControllerTest < ActionController::TestCase
         expected_content = 
           [
             ["You must tell your employer by:","2010-10-02"],
-            ["You can start Maternity Leave on:","2010-10-24"],
+            ["The earliest you can start your Maternity Leave is:","2010-10-24"],
             ["Ordinary Maternity Leave (first 26 weeks):",{"from" => "2010-12-29","to" => "2011-06-28"}],
             ["Additional Maternity Leave (up to 26 weeks more):",{"from" => "2011-06-29","to" => "2011-12-27"}],
             ["Your baby is due on:","2011-01-12"]

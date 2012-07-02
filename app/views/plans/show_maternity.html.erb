@@ -25,9 +25,6 @@
       <% else %>
 
       <section class="key-dates">
-        <header>
-          <h1><%= t('.key_dates.heading') %></h1>
-        </header>
 
         <%= form_tag('/maternity', method: :post)%>
           <div class="<%= @planner.errors[:due_date].any? ? 'error-area' : '' %>">
@@ -58,7 +55,9 @@
             </div>
         </form>
 
+        <% if has_t?('.key_dates.intro.extra') %>
         <p><%= t('.key_dates.intro.extra').html_safe %></p>
+        <% end %>
 
         <ol>
           <% @planner.key_dates.each_with_index do |key_date_info, i| %>

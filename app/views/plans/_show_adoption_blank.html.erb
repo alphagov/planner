@@ -1,0 +1,48 @@
+<div class="summary"><p><%= t('.heading') %></p></div>
+<div class="intro">
+  <%= form_tag('/adoption', method: :post)%>
+    <div class="<%= @planner.errors[:match_date].any? ? 'error-area' : '' %>">
+      <p><%= t('.fields.match_date') %>
+        <% default_match_date = Date.today + 7 %>
+        <label for="match_date_day" class="visuallyhidden">Day of match</label>
+        <%= select_tag "match_date[day]", options_for_select(1..31, params[:match_date] && params[:match_date][:day] || default_match_date.day) %> &nbsp;
+        <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
+        <label for="match_date_month" class="visuallyhidden">Month of match</label>
+        <%= select_tag "match_date[month]", options_for_select(months_with_labels, params[:match_date] && params[:match_date][:month] || default_match_date.month) %> &nbsp;
+        <label for="match_date_year" class="visuallyhidden">Year of match</label>
+        <%= select_tag "match_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:match_date] && params[:match_date][:year] || default_match_date.year) %>
+        <% @planner.errors[:match_date].each do |error| %>
+          <span class="error-message"><%= error %></span>
+        <% end %>
+      </p>
+    </div>
+    <div class="<%= @planner.errors[:arrival_date].any? ? 'error-area' : '' %>">
+      <p><%= t('.fields.arrival_date') %>
+        <% default_arrival_date = default_match_date + 14 %>
+        <label for="arrival_date_day" class="visuallyhidden">Day of arrival</label>
+        <%= select_tag "arrival_date[day]", options_for_select(1..31, params[:arrival_date] && params[:arrival_date][:day] || default_arrival_date.day) %> &nbsp;
+        <% months_with_labels = 1.upto(12).map {|month| [l(Date.new(2011, month, 1), format: '%B'), month]} %>
+        <label for="arrival_date_month" class="visuallyhidden">Month of arrival</label>
+        <%= select_tag "arrival_date[month]", options_for_select(months_with_labels, params[:arrival_date] && params[:arrival_date][:month] || default_arrival_date.month) %> &nbsp;
+        <label for="arrival_date_year" class="visuallyhidden">Year of arrival</label>
+        <%= select_tag "arrival_date[year]", options_for_select((Time.now.year - 1)..(Time.now.year + 2), params[:arrival_date] && params[:arrival_date][:year] || default_arrival_date.year) %>
+        <% @planner.errors[:arrival_date].each do |error| %>
+          <span class="error-message"><%= error %></span>
+        <% end %>
+      </p>
+    </div>
+    <div class="<%= @planner.errors[:start].any? ? 'error-area' : '' %>">
+      <p><%= t('.fields.start') %>
+        <% options = 1.upto(6).map { |n| [t('day', count: n), n] } %>
+        <% options.concat(1.upto(2).map { |n| [t('week', count: n), n * 7] }) %>
+        <label for="start_days_before_arrival" class="visuallyhidden">Days before arrival to take leave</label>
+        <%= select_tag "start[days_before_arrival]", options_for_select(options, params[:start] && params[:start][:days_before_arrival] || 14) %>
+        <%= t('.fields.start_suffix') %>
+        <% @planner.errors[:start].each do |error| %>
+          <span class="error-message"><%= error %></span>
+        <% end %>
+      </p>
+    </div>
+    <input type="submit" value="Calculate" class="button" />
+  </form>
+</div>

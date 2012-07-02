@@ -30,6 +30,10 @@ class PlansController < ApplicationController
           planner: PaternityLeavePlanner,
           need_id: 1947,
         },
+        adoption: {
+          planner: AdoptionLeavePlanner,
+          need_id: 1948
+        }
       }
     end
 

@@ -1,0 +1,18 @@
+en:
+  plans:
+    show_adoption:
+      key_dates:
+        intro:
+          start: Below is a calendar and list of key dates that explain when you can take your Adoption Leave. These dates are for a matching date of
+          arrival: and your child's arrival date of
+          leave_before: with leave starting
+          end: before the arrival date
+    show_adoption_blank:
+      intro: |
+      heading: |
+        Adoption Leave is time off work to look after your adopted child. Enter your details below to see when you can take it. This tool is for UK adoptions only.
+      fields:
+        match_date: Child matching date?
+        arrival_date: Child's expected arrival date?
+        start: You would like to start your Adoption Leave
+        start_suffix: before arrival date.
