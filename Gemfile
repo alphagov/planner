@@ -5,7 +5,7 @@ group :router do
   gem 'router-client', '2.0.3', :require => 'router/client'
 end
 
-# passenger compatability
+# passenger compatibility
 group :passenger_compatibility do
   gem 'rack', '1.3.5'
   gem 'rake', '0.9.2'
