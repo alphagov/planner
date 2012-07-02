@@ -17,7 +17,6 @@ gem 'rails', '3.1.3'
 gem 'json'
 gem 'jquery-rails'
 gem "ri_cal", "~> 0.8.8"
-gem 'rummageable'
 gem 'gds-api-adapters', '~> 0.1.0'
 gem 'gds-warmup-controller'
 gem 'aws-ses', :require => 'aws/ses'
