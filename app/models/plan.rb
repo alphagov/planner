@@ -4,7 +4,7 @@ class Plan
   end
 
   def self.all
-    [MaternityLeavePlanner, PaternityLeavePlanner]
+    [MaternityLeavePlanner, PaternityLeavePlanner, AdoptionLeavePlanner]
   end
 
   def self.load slug, attributes = {}
