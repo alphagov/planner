@@ -6,7 +6,7 @@ namespace :panopticon do
     logger.info "Registering with panopticon..."
     registerer = GdsApi::Panopticon::Registerer.new(owning_app: "planner")
     ::Plan.all.each do |planner|
-      registerer.register(planner)
+      registerer.register(RegisterablePlan.new(planner))
     end
   end
 end

@@ -4,6 +4,11 @@ class BirthPlanner
 
   validate :valid_dates?, :start_date_in_range?
 
+  def self.description
+    # This is a filthy hack, and should die when we next refactor this app
+    I18n.translate("plans.show_#{self.slug}_blank.heading").strip
+  end
+
   # Range of dates which should be used to display all of the information in this planner
   def range
     from = first_of_month(qualifying_week.last)

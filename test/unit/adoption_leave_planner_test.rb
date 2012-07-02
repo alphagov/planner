@@ -9,10 +9,11 @@ class AdoptionLeavePlannerTest < ActiveSupport::TestCase
       assert_nil AdoptionLeavePlanner.new().key_dates
     end
 
-    should "have slug, title and need_id" do
+    should "have slug, title, description and need_id" do
       assert_equal "adoption", AdoptionLeavePlanner.slug
       assert_equal "Planning your Adoption Leave", AdoptionLeavePlanner.title
       assert_equal 1948, AdoptionLeavePlanner.need_id
+      assert_match /adoption leave/i, AdoptionLeavePlanner.description
     end
 
     should "report validation error if match date is not valid" do
