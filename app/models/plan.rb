@@ -1,6 +1,6 @@
 class Plan
   def self.all_slugs
-    all.map { |planner| planner.slug }.sort
+    all.map(&:slug).sort
   end
 
   def self.all
