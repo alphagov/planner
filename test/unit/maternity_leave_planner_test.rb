@@ -11,10 +11,11 @@ class MaternityLeavePlannerTest < ActiveSupport::TestCase
       assert_nil MaternityLeavePlanner.new().key_dates
     end
 
-    should "have slug, title and need_id" do
+    should "have slug, title, description and need_id" do
       assert_equal "maternity", MaternityLeavePlanner.slug
       assert_equal "Planning your Maternity Leave", MaternityLeavePlanner.title
       assert_equal 855, MaternityLeavePlanner.need_id
+      assert_match /maternity leave/i, MaternityLeavePlanner.description
     end
 
     should "report validation error if due date is not valid" do
