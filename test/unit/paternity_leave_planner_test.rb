@@ -3,7 +3,7 @@
 require_relative '../test_helper'
 
 class PaternityLeavePlannerTest < ActiveSupport::TestCase
-  
+
   context "Paternity Leave planner" do
     should 'give nil key_dates if due_date not specified' do
       assert_nil PaternityLeavePlanner.new().key_dates
@@ -14,7 +14,7 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
       assert_equal "Planning your Paternity Leave", PaternityLeavePlanner.title
       assert_equal 1947, PaternityLeavePlanner.need_id
     end
-    
+
     should "report validation error if due date is not valid" do
       m = PaternityLeavePlanner.new(due_date: '31 June 2011')
       assert ! m.valid?
@@ -30,7 +30,7 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
       m = PaternityLeavePlanner.new(due_date: '13 October 2011')
       assert_equal Date.parse('26 June 2011')..Date.parse('2 July 2011'), m.qualifying_week
     end
-    
+
     context "key dates" do
       should 'list key dates' do
         expected = [
@@ -43,7 +43,7 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
         m = PaternityLeavePlanner.new(due_date: '1-1-2012', start: '15 January, 2012')
         assert_equal expected, m.key_dates
       end
-      
+
       should "report validation error if requested Paternity Leave out of range" do
         assert ! PaternityLeavePlanner.new(due_date: '1-1-2012', start: '31-12-2011').valid?
         assert ! PaternityLeavePlanner.new(due_date: '1-1-2012', start: '26-2-2012').valid?
@@ -60,6 +60,6 @@ class PaternityLeavePlannerTest < ActiveSupport::TestCase
         assert_equal Hash[m_expected.key_dates], Hash[m_actual.key_dates]
       end
     end
-    
+
   end
 end

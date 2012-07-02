@@ -6,7 +6,7 @@ class Plan
   def self.all
     [MaternityLeavePlanner, PaternityLeavePlanner]
   end
-  
+
   def self.load slug, attributes = {}
     all.find {|planner| planner.slug == slug}.new attributes
   end
