@@ -24,7 +24,7 @@ class PlansControllerTest < ActionController::TestCase
 
     should "send analytics headers" do
       get :show, id: 'maternity'
-      assert_equal "Family",  @response.headers["X-Slimmer-Section"]
+      assert_equal "family",  @response.headers["X-Slimmer-Section"]
       assert_equal "855",     @response.headers["X-Slimmer-Need-ID"].to_s
       assert_equal "planner", @response.headers["X-Slimmer-Format"]
       assert_equal "citizen", @response.headers["X-Slimmer-Proposition"]
