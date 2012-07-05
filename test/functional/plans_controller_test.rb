@@ -3,17 +3,17 @@ require_relative '../test_helper'
 class PlansControllerTest < ActionController::TestCase
   include AssertNotPresent
   include AssertPresent
-  
+
   context 'GET /plans/maternity' do
     should "show welcome message when no input given" do
       get :show, id: 'maternity'
       assert_not_present 'h1', /Calendar and key dates/
       assert_not_present '.error-notification', /a problem/
     end
-    
+
     should "show calendar when due date given" do
       get :show, id: 'maternity', due_date: {
-        'year' => '2011', 
+        'year' => '2011',
         'month' => '05',
         'day' => '12'
       }
@@ -33,29 +33,29 @@ class PlansControllerTest < ActionController::TestCase
     context "invalid date" do
       setup do
         get :show, id: 'maternity', due_date: {
-          'year' => '2011', 
+          'year' => '2011',
           'month' => '06',
           'day' => '31'
         }
       end
-      
+
       should "show an error message" do
         assert_select '.intro .error-area .error-message', /Sorry, that's not a proper date/
       end
-      
+
       should "hide the calendar" do
         assert_not_present 'h1', /Key Dates/
       end
     end
-    
+
     context "JSON" do
       should "render key dates as json" do
         get :show, id: 'maternity', format: :json, due_date: {
-          'year' => '2011', 
+          'year' => '2011',
           'month' => '01',
           'day' => '12'
         }
-        expected_content = 
+        expected_content =
           [
             ["You must tell your employer by:","2010-10-02"],
             ["The earliest you can start your Maternity Leave is:","2010-10-24"],
@@ -66,11 +66,11 @@ class PlansControllerTest < ActionController::TestCase
         assert_equal expected_content, JSON.parse(@response.body)
       end
     end
-    
+
     context "ical" do
       should "render key dates as ical" do
         get :show, id: 'maternity', format: :ics, due_date: {
-          'year' => '2011', 
+          'year' => '2011',
           'month' => '01',
           'day' => '12'
         }
