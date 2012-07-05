@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   def set_analytics_headers
     set_slimmer_headers(
-      section:     "Family",
-      format:      "planner",
+      section: "family",
+      format: "planner",
       proposition: "citizen"
     )
   end
