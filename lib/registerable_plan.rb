@@ -18,4 +18,12 @@ class RegisterablePlan
     ""
   end
 
+  def paths
+    path = "#{slug}"
+    [path, "#{path}.ics", "#{path}.json", "#{path}.xml"]
+  end
+
+  def prefixes
+    []
+  end
 end

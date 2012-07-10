@@ -1,10 +1,6 @@
 source 'http://rubygems.org'
 source 'https://gems.gemfury.com/vo6ZrmjBQu5szyywDszE/'
 
-group :router do
-  gem 'router-client', '2.0.3', :require => 'router/client'
-end
-
 # passenger compatibility
 group :passenger_compatibility do
   gem 'rack', '1.3.5'
@@ -17,7 +13,7 @@ gem 'rails', '3.1.3'
 gem 'json'
 gem 'jquery-rails'
 gem "ri_cal", "~> 0.8.8"
-gem 'gds-api-adapters', '~> 0.1.1'
+gem 'gds-api-adapters', '~> 0.1.2'
 gem 'gds-warmup-controller'
 gem 'aws-ses', :require => 'aws/ses'
 gem 'gelf'
