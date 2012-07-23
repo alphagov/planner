@@ -17,6 +17,7 @@ gem 'gds-api-adapters', '~> 0.1.2'
 gem 'gds-warmup-controller'
 gem 'aws-ses', :require => 'aws/ses'
 gem 'gelf'
+gem 'unicorn'
 
 if ENV['SLIMMER_DEV']
   gem 'slimmer', :path => '../slimmer'
