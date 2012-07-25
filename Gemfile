@@ -18,6 +18,7 @@ gem 'gds-warmup-controller'
 gem 'aws-ses', :require => 'aws/ses'
 gem 'gelf'
 gem 'unicorn'
+gem 'lograge'
 
 if ENV['SLIMMER_DEV']
   gem 'slimmer', :path => '../slimmer'
