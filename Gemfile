@@ -3,7 +3,7 @@ source 'https://gems.gemfury.com/vo6ZrmjBQu5szyywDszE/'
 
 gem 'exception_notification'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.1.7'
 gem 'json'
 gem 'jquery-rails'
 gem "ri_cal", "~> 0.8.8"
@@ -35,8 +35,6 @@ group :test do
 end
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
   gem "therubyracer", "~> 0.9.4"
   gem 'uglifier'
 end
