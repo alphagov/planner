@@ -3,7 +3,7 @@ source 'https://gems.gemfury.com/vo6ZrmjBQu5szyywDszE/'
 
 gem 'exception_notification'
 
-gem 'rails', '3.1.7'
+gem 'rails', '3.2.7'
 gem 'json'
 gem 'jquery-rails'
 gem "ri_cal", "~> 0.8.8"
