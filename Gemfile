@@ -1,12 +1,6 @@
 source 'http://rubygems.org'
 source 'https://gems.gemfury.com/vo6ZrmjBQu5szyywDszE/'
 
-# passenger compatibility
-group :passenger_compatibility do
-  gem 'rack', '1.3.5'
-  gem 'rake', '0.9.2'
-end
-
 gem 'exception_notification'
 
 gem 'rails', '3.1.3'
