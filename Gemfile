@@ -17,7 +17,7 @@ gem 'lograge', '0.0.6'
 if ENV['SLIMMER_DEV']
   gem 'slimmer', path: '../slimmer'
 else
-  gem 'slimmer', '1.2.1'
+  gem 'slimmer', '1.2.3'
 end
 
 group :test do
