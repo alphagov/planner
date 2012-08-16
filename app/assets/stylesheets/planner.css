@@ -1,4 +1,4 @@
-.citizen .planner .summary{
+.mainstream .planner .summary{
   background-color:#d5ecea;
   color:#333;
   font-weight:300;
@@ -106,11 +106,11 @@ article table {
   list-style-type:none;
 }
 
-.citizen article .key-dates ol .key-date-summary {
+.mainstream article .key-dates ol .key-date-summary {
   font-weight:300;
   font-size:1em;
 }
-.citizen article .key-dates time{
+.mainstream article .key-dates time{
   font-weight:bold;
 }
 .related .actions li .button{
