@@ -13,6 +13,8 @@ gem 'aws-ses', '0.4.4', require: 'aws/ses'
 gem 'gelf', '1.3.2'
 gem 'unicorn', '4.3.1'
 gem 'lograge', '0.0.6'
+gem 'statsd-ruby', '1.0.0'
+gem 'rack-statsd', '0.1.1'
 
 if ENV['SLIMMER_DEV']
   gem 'slimmer', path: '../slimmer'
