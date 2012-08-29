@@ -19,7 +19,7 @@ gem 'rack-statsd', '0.1.1'
 if ENV['SLIMMER_DEV']
   gem 'slimmer', path: '../slimmer'
 else
-  gem 'slimmer', '1.2.4'
+  gem 'slimmer', '2.0.0'
 end
 
 group :test do

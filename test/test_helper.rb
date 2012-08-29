@@ -31,3 +31,5 @@ module AssertPresent
   end
 
 end
+
+require 'webmock/test_unit'
