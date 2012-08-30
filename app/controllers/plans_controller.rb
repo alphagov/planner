@@ -1,11 +1,18 @@
+require 'gds_api/helpers'
+
 class PlansController < ApplicationController
+  include GdsApi::Helpers
   before_filter :find_planner
 
   def show
     expires_in 24.hours, :public => true unless Rails.env.development?
     if @planner
       respond_to do |format|
-        format.html { render "show_#{@planner.class.slug}" }
+        format.html do
+          @artefact = fetch_artefact(slug: params[:id])
+          set_slimmer_artefact(@artefact)
+          render "show_#{@planner.class.slug}"
+        end
         if @planner.errors.any? || @planner.key_dates.nil?
           format.any(:xml, :json, :ics) { head 400 }
         else

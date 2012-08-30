@@ -1,20 +1,13 @@
 require 'test_helper'
 require 'capybara/rails'
+require 'slimmer/test'
+require 'gds_api/test_helpers/panopticon'
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
-end
+  include GdsApi::TestHelpers::Panopticon
 
-# Tell all requests to skip slimmer
-class ActionController::Base
-  before_filter proc {
-    response.headers[Slimmer::SKIP_HEADER] = "true"
-  }
-end
-
-Capybara.default_driver = :webkit
-Capybara.app = Rack::Builder.new do
-  map "/" do
-    run Capybara.app
+  setup do
+    stub_panopticon_default_artefact
   end
 end
