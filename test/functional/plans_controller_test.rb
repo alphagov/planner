@@ -1,10 +1,16 @@
 require_relative '../test_helper'
+require 'gds_api/test_helpers/panopticon'
 
 class PlansControllerTest < ActionController::TestCase
   include AssertNotPresent
   include AssertPresent
+  include GdsApi::TestHelpers::Panopticon
 
-  context 'GET /plans/maternity' do
+  context "GET 'show'" do
+    setup do
+      stub_panopticon_default_artefact
+    end
+
     should "show welcome message when no input given" do
       get :show, id: 'maternity'
       assert_not_present 'h1', /Calendar and key dates/
@@ -28,6 +34,15 @@ class PlansControllerTest < ActionController::TestCase
       assert_equal "855",     @response.headers["X-Slimmer-Need-ID"].to_s
       assert_equal "planner", @response.headers["X-Slimmer-Format"]
       assert_equal "citizen", @response.headers["X-Slimmer-Proposition"]
+    end
+
+    should "send artefact to slimmer" do
+      mock_artefact = {'slug' => 'maternity', "name" => "Planning your Maternity Leave"}
+      GdsApi::Panopticon.any_instance.expects(:artefact_for_slug).with('maternity').returns(mock_artefact)
+
+      @controller.expects(:set_slimmer_artefact).with(mock_artefact)
+
+      get :show, id: 'maternity'
     end
 
     context "invalid date" do
@@ -80,14 +95,14 @@ class PlansControllerTest < ActionController::TestCase
         assert_match 'Maternity Leave planner: You must tell your employer by:', summaries.first
       end
     end
-  end
 
-  should "not include bogus parameters in alternative formats" do
-    get :show, id: 'maternity', thing: "BOGUS", due_date: {
-      'year' => '2011',
-      'month' => '01',
-      'day' => '12'
-    }
-    assert_no_match %r{BOGUS}, response.body
+    should "not include bogus parameters in alternative formats" do
+      get :show, id: 'maternity', thing: "BOGUS", due_date: {
+        'year' => '2011',
+        'month' => '01',
+        'day' => '12'
+      }
+      assert_no_match %r{BOGUS}, response.body
+    end
   end
 end
