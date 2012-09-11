@@ -10,8 +10,8 @@ class RegisterablePlan
     @plan = plan
   end
 
-  def live
-    true
+  def state
+    'live'
   end
 
   def indexable_content
