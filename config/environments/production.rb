@@ -60,8 +60,9 @@ Planner::Application.configure do
 
   config.action_controller.asset_host = Plek.current.find('cdn')
 
-  config.slimmer.cache_templates = true
+  config.slimmer.use_cache = true
   config.slimmer.asset_host = Plek.current.find('assets')
+  config.slimmer.logger = Rails.logger
 
   config.action_mailer.default_url_options = { :host => Plek.current.find('planner') }
   config.action_mailer.delivery_method = :ses

@@ -9,7 +9,7 @@ class PlansController < ApplicationController
     if @planner
       respond_to do |format|
         format.html do
-          @artefact = fetch_artefact(slug: params[:id])
+          @artefact = content_api.artefact(params[:id])
           set_slimmer_artefact(@artefact)
           render "show_#{@planner.class.slug}"
         end
@@ -50,7 +50,6 @@ class PlansController < ApplicationController
       details = planners[planner_name] or return
 
       @planner = details[:planner].new(params.symbolize_keys)
-      set_slimmer_headers need_id: details[:need_id]
 
     rescue ArgumentError
       nil
