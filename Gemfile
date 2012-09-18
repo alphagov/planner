@@ -7,7 +7,7 @@ gem 'rails', '3.2.7'
 gem 'json', '1.7.4'
 gem 'jquery-rails', '1.0.19'
 gem 'ri_cal', '0.8.8'
-gem 'gds-api-adapters', '1.8.0'
+gem 'gds-api-adapters', '2.1.0'
 gem 'aws-ses', '0.4.4', require: 'aws/ses'
 gem 'gelf', '1.3.2'
 gem 'unicorn', '4.3.1'
@@ -18,7 +18,7 @@ gem 'rack-statsd', '0.1.1'
 if ENV['SLIMMER_DEV']
   gem 'slimmer', path: '../slimmer'
 else
-  gem 'slimmer', '2.1.0'
+  gem 'slimmer', '3.3.2'
 end
 
 group :test do
