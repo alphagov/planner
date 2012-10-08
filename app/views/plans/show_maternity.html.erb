@@ -95,12 +95,6 @@
 
     </div>
   </article>
-  <div class="meta-data group">
-    <div class="inner">
-      <p class="modified-date">Last updated: <%= last_updated_date.strftime('%d %B %Y') %></p>
-      <!-- <p class="ical-link"><%= link_to "Add to calendar", plan_path('maternity', @planner.recognized_params.merge(format: :ics)) %></p> -->
-      <!-- <p class="print-link"><a href="" onclick="window.print(); return false;">Print this calendar</a></p> -->
-    </div>
-  </div>
+  <%= render :partial => 'planner_metadata' %>
 </div>
 </section>

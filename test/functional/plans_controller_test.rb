@@ -1,14 +1,14 @@
 require_relative '../test_helper'
-require 'gds_api/test_helpers/panopticon'
+require 'gds_api/test_helpers/content_api'
 
 class PlansControllerTest < ActionController::TestCase
   include AssertNotPresent
   include AssertPresent
-  include GdsApi::TestHelpers::Panopticon
+  include GdsApi::TestHelpers::ContentApi
 
   context "GET 'show'" do
     setup do
-      stub_panopticon_default_artefact
+      stub_content_api_default_artefact
     end
 
     should "show welcome message when no input given" do
@@ -30,19 +30,16 @@ class PlansControllerTest < ActionController::TestCase
 
     should "send analytics headers" do
       get :show, id: 'maternity'
-      assert_equal "family",  @response.headers["X-Slimmer-Section"]
-      assert_equal "855",     @response.headers["X-Slimmer-Need-ID"].to_s
       assert_equal "planner", @response.headers["X-Slimmer-Format"]
-      assert_equal "citizen", @response.headers["X-Slimmer-Proposition"]
     end
 
     should "send artefact to slimmer" do
-      mock_artefact = {'slug' => 'maternity', "name" => "Planning your Maternity Leave"}
-      GdsApi::Panopticon.any_instance.expects(:artefact_for_slug).with('maternity').returns(mock_artefact)
-
-      @controller.expects(:set_slimmer_artefact).with(mock_artefact)
+      artefact_data = artefact_for_slug('maternity')
+      content_api_has_an_artefact("maternity", artefact_data)
 
       get :show, id: 'maternity'
+
+      assert_equal JSON.dump(artefact_data), @response.headers["X-Slimmer-Artefact"]
     end
 
     context "invalid date" do

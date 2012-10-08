@@ -13,7 +13,7 @@ class PanopticonRegistrationTest < ActiveSupport::TestCase
       [:name, :description, :slug].each do |key|
         assert artefact.has_key? key
       end
-      assert artefact[:live]
+      assert_equal 'live', artefact[:state]
     end
   end
 end
